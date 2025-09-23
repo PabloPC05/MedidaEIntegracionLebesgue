@@ -1,0 +1,230 @@
+
+\section{Fundamentos de la teoría de la medida}
+\subsection{Anillo, álgebra y $\sigma$-álgebra de conjuntos}
+\begin{definición}[Anillo]
+    Dados los conjuntos $X$ y $\mathcal{A} \subseteq \mathcal{P}(X)$, es decir una familia de subconjuntos no vacía, se dice que $\mathcal{A}$ es un \textbf{anillo de conjuntos} en $X$ si:
+    \begin{enumerate}
+        \item $\mathcal{A}$ es cerrado por uniones finitas, es decir, $\forall A, B \in \mathcal{A} \implies A \cup B \in \mathcal{A}$.
+        \item $\mathcal{A}$ es cerrado por diferencias, es decir, $\forall A, B \in \mathcal{A} \implies A \setminus B \in \mathcal{A}$.
+    \end{enumerate}
+\end{definición}
+\begin{definición}[Álgebra]
+    Dado un conjunto $X$ y $\mathcal{A} \subseteq \mathcal{P}(X)$, familia de conjuntos no vacía, se dice que $\mathcal{A}$ es un \textbf{álgebra de conjuntos} en $X$ si:
+    \begin{enumerate}
+        \item $\mathcal{A}$ es cerrado por uniones finitas
+        \item $\mathcal{A}$ es cerrado por complementos
+        \item $X \in \mathcal{A}$
+    \end{enumerate}
+\end{definición}
+\begin{definición}[$\sigma$-álgebra]
+    Dado un conjunto $X$ y $\mathcal{A} \subseteq \mathcal{P}(X)$, familia de conjuntos no vacía, se dice que $\mathcal{A}$ es una \textbf{$\sigma$-álgebra de conjuntos} en $X$ si:
+    \begin{enumerate}
+        \item $\mathcal{A}$ es cerrado por uniones numerables
+        \item $\mathcal{A}$ es cerrado por complementos
+        \item $X \in \mathcal{A}$
+    \end{enumerate}
+\end{definición}
+\begin{observación}
+    Una álgebra es un anillo al que pertenece el conjunto total $X$. 
+\end{observación}
+\begin{observación}
+    \vspace{-1cm}
+    \begin{enumerate}
+        \item Si $\mathcal{A}$ es un anillo, entonces tomando $A, B \in \mathcal{A}$, tenemos que $\emptyset = A \setminus A \in \mathcal{A}$ y $A \cap B = A \setminus (A \setminus B) \in \mathcal{A}$. Es decir, los anillos también son cerrados por intersección.
+        \item Sea $\mathcal{A}$ anillo y $E \in \mathcal{A}$. Entonces $\mathcal{A}_E = \{A \in \mathcal{A} : A \subset E\} = \{A \cap E : A \in \mathcal{A}\}$ es una álgebra de conjuntos en $E$.
+    \end{enumerate}
+\end{observación}
+\begin{definición}[Espacio medible]
+    Dada una $\sigma$-algebra $\Sigma$ de un conjunto $X$ o también expresado como un par $(X, \Sigma)$ se llama espacio medible. A los conjuntos de $\Sigma$ se les llama conjuntos medibles. 
+\end{definición}
+\begin{definición}[Función medible]
+    Dados dos espacios medibles $(X, \Sigma_X)$ y $(Y, \Sigma_Y)$, y una función $f: (X, \Sigma_X) \to (Y, \Sigma_Y)$, se dce que es medible si $\forall E \in \Sigma_Y f^{-1}(E) \in \Sigma_X$.
+\end{definición}
+\begin{lema}
+    Sean un conjunto $X$, $\mathcal{C} \subset \mathcal{P}(X)$ y una familia $\mathfrak{U}$ de $\sigma$-algebras/álgebras/anillos en $X$ que contienen a $\mathcal{C}$. Entonces $\bigcap_{\mathcal{A} \in \mathfrak{U}} \mathcal{A}$ es una $\sigma$-álgebra/álgebra/anillo que llamamos \textbf{$\sigma$-álgebra/álgebra/anillo generada por $\mathcal{C}$} siendo la menor $\sigma$-álgebra/álgebra/anillo que contiene a $\mathcal{C}$.
+\end{lema}
+
+\subsection{Contenidos y medidas}
+\begin{definición}[Contenido]
+    Sea $X$ un conjunto y $\Sigma$ un anillo en $X$. Se dice que una función $\mu: \Sigma \to [0, +\infty]$ es un contenido en $\Sigma$ si: 
+    \begin{enumerate}
+        \item $\mu(\emptyset) = 0$
+        \item $\mu$ es aditivo, esto es que, dada una sucesión de finita de conjuntos $\{E_k\}_{k = 1}^{n} \subset \Sigma$ es tal que $E_k \cap E_j = \emptyset$ para $k \neq j$ entonces: 
+        \[\mu\left(\bigcup_{k = 1}^{n} E_k\right) = \sum_{k = 1}^{n} \mu(E_k)\]
+    \end{enumerate}
+\end{definición}
+\begin{definición}[Medida]
+    Sea $X$ un conjunto y $\Sigma$-algebra en $X$. Se dice que una función $\mu: \Sigma \to [0, +\infty]$ es un contenido en $\Sigma$ si: 
+    \begin{enumerate}
+        \item $\mu(\emptyset) = 0$
+        \item $\mu$ es $\sigma$-aditivo, esto es que, dada una sucesión numerable de conjuntos $\{E_k\}_{k = 1}^{\infty} \subset \Sigma$ es tal que $E_k \cap E_j = \emptyset$ para $k \neq j$ entonces: 
+        \[\mu\left(\bigcup_{k = 1}^{\infty} E_k\right) = \sum_{k = 1}^{\infty} \mu(E_k)\]
+    \end{enumerate}
+\end{definición}
+\begin{definición}[Espacio de medida]
+    Dado un conjunto $X$, una $\sigma$-álgebra $\Sigma$ en $X$ y una medida $\mu: \Sigma \to [0, +\infty]$, se llama espacio de medida a la terna $(X, \Sigma, \mu)$.
+\end{definición}
+\begin{observación}
+    En el caso particualar en el que $\mu(X) = 1$, se dice que $\mu$ es una \textbf{medida de probabilidad} para cada $E \in \Sigma$ y el espacio de medida se llama \textbf{espacio de probabilidad}.
+\end{observación}
+\begin{definición}[Espacio de medida finita]
+    SE dice que $(X, \Sigma, \mu)$ es un espacio de medida finita si $\mu(X) < +\infty$.
+\end{definición}
+\begin{definición}[Espacio de medida $\sigma$-finita]
+    SE dice que $(X, \Sigma, \mu)$ es un espacio de medida $\sigma$-finita si existe una sucesión numerable de conjuntos $\{E_k\}_{k = 1}^{\infty} \subset \Sigma$ tal que $X = \bigcup_{k = 1}^{\infty} E_k$ y $\mu(E_k) < +\infty$ para todo $k \in \mathbb{N}$.
+\end{definición}
+\begin{observación}
+    Las definiciones anteriores se pueden aplicar de la misma manera a los contenidos.
+\end{observación}
+\begin{definición}[$\sigma$-álgebra de Borel]
+    Teniendo en cuenta la definición formal de $\sigma$-álgebra, tenemos que $X$ es un espacio topológico con topología $\tau$ se dice que $\Sigma$ es una \textbf{$\sigma$-álgebra de Borel} con respecto $\tau$ y que $\mu$ es una medida de $\tau$-Borel o una medida de Borel con respecto a $\tau$, si $\tau \subset \Sigma$. 
+    \\
+    Decimos que la menor $\sigma$-álgebra que contiene a $\tau$ es la $\sigma$-álgebra de Borel de $\tau$ y la denotamos por $\mathcal{B}(\tau)$. 
+    \\
+    En el caso concreto en el que el espacio topológico sea $\mathbb{R}^n$ con la topología usual, denotaremos a esta $\sigma$-álgebra de Borel por $\mathcal{B}^n$.
+\end{definición}
+\begin{definición}[Función de Borel]
+    Una función $f: (X, \tau_1) \to (Y, \tau_2)$ definida entre dos espacios topológicos se dice que es una \textbf{función de Borel} si $f: (X, \mathcal{B}(\tau_1)) \to (Y, \mathcal{B}(\tau_2))$ es medible.
+\end{definición}
+\begin{definición}[Medida de Borel regular]
+    Dada una medida de Borel $\mu$ en un espacio topológico $(X, \tau)$, se dice que es una \textbf{medida de Borel regular} si es regular exterior, es decir, si cumple dos condiciones: 
+    \begin{enumerate}
+        \item Regularidad exterior: 
+        $$\forall A \in \Sigma \mu(A) = inf\{\mu(U) : A \subset G, G \in \Sigma \text{ abierto}\}$$
+        \item Regularidad interior:
+        $$\forall A \in \Sigma \mu(A) = sup\{\mu(K) : F \subset A, F \in \Sigma \text{ compacto}\}$$
+    \end{enumerate}
+\end{definición}
+\begin{definición}[Casi todo punto]
+    Dado un espacio de medida $(X, \Sigma, \mu)$ y $E \in \Sigma$ diremos que una propiedad $P$ se cumple en $\mu$-casi todo punto de $E$ si existe $N \in \Sigma$, $N \subset E$ tal que $\mu(N) = 0$ y $P$ se cumple en $E/N$.
+\end{definición}
+\begin{definición}[Intervalo]
+    Llamamos intervalos de $\mathbb{R}$ a los conjuntos conexos de $\mathbb{R}$ (contamos al vacío como intervalo). Decimos que $I \subset \mathbb{R}^n$ es un intervalo si $I = \prod_{i=1}^{n} I_i$ donde cada $I_i$ es un intervalo de $\mathbb{R} \forall i = 1, \ldots, n$.
+\end{definición}
+\begin{observación}
+    Como la intersección de intervalos en $\mathbb{R}$ es un intervalo (la intersección de conexos es conexa), y dados dos intervalos $\prod_{i=1}^{n} I_i$ y $\prod_{i=1}^{n} J_i$ en $\mathbb{R}^n$, tenemos que:
+    \[\left(\prod_{i = 1}^{n}I_i\right) \cap \left(\prod_{i = 1}^{n} J_i\right) = \prod_{i = 1}^{n} (I_i \cap J_i)\]
+    es decir, la intersección de dos intervalos en $\mathbb{R}^n$ es un intervalo en $\mathbb{R}^n$. 
+\end{observación}
+\ejemplo{
+    La familia $\mathcal{J}_0$ de uniones finitas de intervalos limitados disjuntos dos a dos de la forma
+    $$\prod_{i=1}^{b} [a_n, b_n) = [(a_1, \ldots, a_n), (b_1, \ldots, b_n))$$
+    en el conjunto $\mathbb{R}^n$ forman un anillo. La familia $\mathcal{J}$ de uniones finitas de intervalos disjuntos dos a dos de forma
+    $$\mathbb{R}^n \cap \prod_{i=1}^{b} [a_n, b_n) = \mathbb{R}^n \cap [(a_1, \ldots, a_n), (b_1, \ldots, b_n))$$
+    donde $-\infty \leq a_i < b_i \leq +\infty$ para todo $i = 1, \ldots, n$ forman un álgebra.\\
+    Llamamos \textbf{contenido de Jordan} o \textbf{contenido de Peano-Jordan} a la función $\mu: \mathcal{J} \to [0, +\infty]$ definida como:
+    $$\mu\left(\prod_{i=1}^{n} [a_i, b_i)\right) = \prod_{i=1}^{n} (b_i - a_i)$$
+    donde, por simplicidad, entendemos que $0 \cdot (+\infty) = 0$. Para calcular el contenido de Jordan de un conjunto cualquiera $\mathcal{J}$, como es una unión finita de intervalos disjuntos de la forma $\prod_{i=1}^{b} [a_n, b_n)$, basta con sumar los contenidos de todos los intervalos que lo componen.
+}
+\begin{lema}
+    Sea $X$ un conjunto, $\mathcal{A}$ un anillo en $X$ y $\mu$ un contenido (medida) en $\mathcal{A}$. Entonces se cumplen las siguientes propiedades:
+    \begin{enumerate}
+        \item Monotonía y subaditividad: 
+        $$\mu(A) \leq \mu(B) \forall A, B \in \mathcal{A}, A \subset B$$
+        Si además, $\mu(B) < +\infty$ entonces $\mu(B \setminus A) = \mu(B) - \mu(A)$.
+        \item Subaditividad de sucesión de conjuntos: Dado una sucesión de conjuntos $\{E_k\}_{k = 1}^{n} \subset \mathcal{A}$ entonces:
+        $$\mu\left(\bigcup_{k = 1}^{n} E_k \leq \sum_{k = 1}^{n} \mu(E_k)\right)$$
+        \item Sea $\{E_n\}_{n \in \mathbb{N}} \subset \mathcal{A}$, entonces
+        $$\lim_{n \to \infty} \mu\left(\bigcup_{k = 1}^{n} E_k\right) \leq \sum_{k = 1}^{\infty} \mu(E_k)$$
+        \item $\sigma$-subaditividad de medidas: Sea $\mu$ una medida, entonces
+        $$\mu\left(\bigcup_{k = 1}^{\infty} E_k\right) \leq \sum_{k = 1}^{\infty} \mu(E_k)$$
+        \item $\sigma$-superadtividad de medidas: Sea $\{E_n\}_{n \in \mathbb{N}} \subset \mathcal{A}$ es una familia disjunta dos a dos y además $\cup_{n \in \mathbb{N}} \in \mathcal{A}$, entonces
+        \[\mu\left(\bigcup_{n \in \mathbb{N}} E_n\right) \geq \sum_{n = 1}^{\infty} \mu(E_n) = \lim_{n \to \infty} \mu\left(\bigcup_{k = 1}^{n} E_k\right)\]
+    \end{enumerate}
+\end{lema}
+\begin{proposición}
+    Sea $\mathcal{A}$ un anillo en $X$ y sea $\mu: \mathcal{A} \to [0, +\infty]$ un contenido. Entonces son equivalentes las siguintes condiciones:
+    \begin{enumerate}
+        \item $\mu$ es $\sigma$-aditiva, esto es: Dado una sucesión de conjuntos disjuntos dos a dos $\{B_n\}_{n \in \mathbb{N}}$ tal que $B = \cup_{n \in \mathbb{N}} B_n \in \mathcal{A}$ y $\mu(B) < +\infty$ entonces:
+        $$\mu(B) = \sum_{n = 1}^{\infty} \mu(B_n)$$
+        \item Continuidad en el $0$: Dada una sucesión de elementos $\{A_n\}_{n \in \mathbb{N}} \subset \mathcal{A}$ decreciente, es decir, $A_{n+1} \subset A_n$ para todo $n \in \mathbb{N}$ y tal que $\cap_{n \in \mathbb{N}} A_n = \emptyset$ y $\mu(A_1) < +\infty$, entonces:
+        $$\lim_{n \to \infty} \mu(A_n) = 0$$
+        \item $\mu$ es continua por debajo: Dada una sucesión de elementos $\{A_n\}_{n \in \mathbb{N}} \subset \mathcal{A}$ creciente, es decir, $A_n \subset A_{n+1}$ para todo $n \in \mathbb{N}$ y tal que $\mu(\cup_{n \in \mathbb{N}} A_n) < +\infty$, entonces:
+        $$\lim_{n \to \infty} \mu(A_n) = \mu(A)$$
+        \item $\mu$ es $\sigma$-subaditiva: Dada una sucesión de conjuntos $\{A_n\}_{n \in \mathbb{N}} \subset \mathcal{P}(X)$ y $A = \cup_{n \in \mathbb{N}} A_n \in \mathcal{A}$ y $\mu(A) < +\infty$, entonces:
+        $$\mu(A) \leq \sum_{n = 1}^{\infty} \mu(A_n)$$
+    \end{enumerate}
+\end{proposición}
+\begin{proof}
+    (1) $\implies$ (2): Supongamos que $\mu$ satisface $(1)$ y que una sucesión $\{A_n\}_{n \in \mathbb{N}} \subset \mathcal{A}$ decreciente tal que $\mu(A_1) < +\infty$ y $\cap_{n \in \mathbb{N}} A_n = \emptyset$. Definimos $B_n = A_n \setminus A_{n+1}$, tales que pertenecen a $\mathcal{A}$, su unión es $A_1$ y son disjuntos dos a dos. Por lo tanto la sucesiñon dada por $s_n = \sum_{k = 1}^{n} \mu(B_k)$ es monotona creciente y esta limitada por $\mu(A_1) < \infty$, por lo que la serie $\sum_{k = 1}^{\infty} \mu(B_k)$ converge. \\
+    Finalmente, tenemos que la cola de la serie $$\sum_{n = N}^{\infty} \mu(B_n) \xrightarrow{N \to \infty} 0$$
+    Pero esta suma es igual a $\mu(A_N)$, ya que $\cup_{n = N}^{\infty} B_n = A_N$. Por lo tanto llegamos a la condición (2).\\
+    (2) $\implies$ (3): \\
+    Tomemos la sucesión de conjuntos $A_n = B \setminus B_n$ que satisface las hipótesis de (2) y por lo tanto 
+    $$ 0 = \lim_{n \to \infty} \mu(A_n) = \lim_{n \to \infty} \mu(B \setminus B_n) = \mu(B) - \lim_{n \to \infty} \mu(B_n)$$
+    por lo que $$\lim_{n \to \infty} \mu(B_n) = \mu(B)$$
+    (3) $\implies$ (4): \\
+    Tomando $B_n 0 \bigcup_{k = 1} ^{n} A_k$ que satisface las hipótesis de (3) y $$\mu(E) = \mu \left(\bigcup_{n \in \mathbb{N}} B_n \right) = \lim_{n \to \infty} \mu(B_n) = \lim_{n \to \infty} \mu\left(\bigcup_{k = 1}^{n} A_k\right) \leq \lim_{n \to \infty} \sum_{k = 1}^{n} \mu(A_k) = \sum_{k = 1}^{\infty} \mu(A_k)$$
+    (4) $\implies$ (1): \\
+    Basta aplicar el lema anterior para la demostración.
+\end{proof}
+\begin{lema}
+    Sea $\mathcal{A}$ un anillo en $X$ y sea $\mu: \mathcal{A} \to [0, \infty]$. Si $\mu$ es aditiva y $\sigma$-subaditiva, entonces es $\sigma$-aditiva.
+\end{lema}
+\begin{proof}
+    Se una sucesión de conjuntos $\{B_n\}_{n \in \mathbb{N}}$ disjuntos dos a dos tales que $B = \cup_{n \in \mathbb{N}} B_n \in \mathcal{A}$ y $\mu(B) < +\infty$. Entonces, tenemos que: 
+    $$\sum_{k = 1}^{n} \mu (B_k) = \mu\left(\bigcup_{k = 1}^{n} B_k\right) \leq \mu(B) \leq \sum_{k = 1}^{\infty} \mu(B_k) \xrightarrow{n \to \infty}  \sum_{k = 1}^{\infty} \leq \mu(B) \leq \sum_{k = 1}^{\infty} \mu(B_k)$$
+    Por lo tanto, $\mu(B) = \sum_{k = 1}^{\infty} \mu(B_k)$.
+\end{proof}
+
+\subsection{Medidas exteriores}
+\begin{definición}[Medida exterior]
+    Sea $X$ un conjunto. Dada una función $\mu: \mathcal{P}(X) \to [0, \infty]$ es una medida eterior si 
+    \begin{enumerate}
+        \item $\mu(\emptyset) = 0$
+        \item $\mu(A) \leq \mu(B)$ si $A \subset B \subset X$
+        \item $\mu$ es $\sigma$-subaditiva, es decir, dada una sucesión de conjuntos $\{A_n\}_{n \in \mathbb{N}} \subset \mathcal{P}(X)$ se cumple que:
+        $$\mu\left(\bigcup_{n \in \mathbb{N}} A_n\right) \leq \sum_{n \in \mathbb{N}} \mu(A_n)$$
+    \end{enumerate}
+\end{definición}
+
+\begin{definición}[Diferencia de dos conjuntos]
+    Dado un conjunto $X$ y $A, B \subset X$ llamamos \textbf{diferencia} de $A$ y $B$ al conjunto $A \Delta B = (A \setminus B) \cup (B \setminus A)$.
+\end{definición}
+\begin{definición}[Medida exterior de Lebesgue]
+    Sea $X$ un conjunto $\mathcal{A} \subset \mathcal{P}(X)$ tal que $X \in \mathcal{A}$ y $\mu: \mathcal{A} \to [0, \infty]$. Definimos la función $\mu^*: \mathcal{P}(X) \to [0, \infty]$ asociada a $\mu$ tal que $\forall A \subset X:$
+    $$\mu^*(A) = \inf\left\{\sum_{n \in \mathbb{N}} \mu(A_n) : \{A_n\}_{n \in \mathbb{N}} \subset \mathcal{A}, A \subset \bigcup_{n \in \mathbb{N}} A_n\right\}$$
+\end{definición}
+\begin{definición}[Conjunto medible]
+    Sea $A$ un subconjunto de $X$ y $\mu^*$ una medida exterior en $X$. Se dice que $A$ es $\mu$-\textbf{medible} si: 
+    $$\forall \epsilon > 0 \exists A_{\epsilon} \in \mathcal{A} : \mu^*(A \Delta A_{\epsilon}) < \epsilon$$
+\end{definición}
+
+\begin{lema}
+    Sea $X$ un conjunto, $\mathcal{A} \subset \mathcal{P}(X)$ tal que $X \in \mathcal{A}, B, C \subset X$ y $\mu: \mathcal{A} \to [0, \infty]$-¿¿medida exterior??. Entonces: 
+    \begin{enumerate}
+        \item $\mu^*(B) \leq \mu^*(C)$ si $B \subset C$
+        \item $\mu^*$ es $\sigma$-subaditiva, es decir, $\mu^*\left(\cup_{n = 1}^{\infty} A_n\right) \leq \sum_{n = 1}^{\infty} \mu^*(A_n)$
+        \item $|\mu^*(B) - \mu^*(C)| \leq \mu^*(B \Delta C)$
+        \item Si $\mathcal{A}$ es un anillo y $\mu$ es un contenido, entonces $\mu^*(\emptyset) = 0$ y equivalentemente, $\mu^*$ es una medida exterior en $X$.
+    \end{enumerate} 
+\end{lema}
+\begin{proof}
+    \begin{enumerate}
+    \item $\mu^*$ es por definición monótona creciente, esto es, si $B \subset C \implies \mu^*(B) \leq \mu^*(C)$. Esto se debe a que cualquier recubrimiento numerable de $C$ es también un recubrimiento numerable de $B$.
+    \item Sea una sucesión de conjuntos $\{A_n\}_{n \in \mathbb{N}} \subset \mathcal{A}$ tal que $A = \cup A_n$. Dado un $\epsilon > 0$, existen dos casos posibles, 
+        \begin{enumerate}
+            \item Existe $k \in \mathbb{N}$ tal que $\mu^*(A_k) = +\infty$. Entonces, como $A_k \subset A$ se tiene que $\mu^*(A) = \infty$ y por tanto no hay nada que demostrar.
+            \item Si se cumple que $\forall n \in \mathbb{N} \mu^*(A_n) < \infty$ entonces, para cada una de las $n$ existe un recubrimiento $\{B_{n,k}\}_{k \in \mathbb{N}} \subset \mathcal{A}$ tal que $A_n \subset \cup_{k = 1}^{\infty} B_{n,k}$ y por tanto
+            $$\sum_{k = 1}^{\infty} \mu(B_{n, k}) \leq \mu^*(A_n) + \frac{\epsilon}{2^n}$$
+            Por lo tanto se tiene que $\cup A_n \subset \cup \cup B_{n, k}$ y en consecuencia se tiene que
+            $$\mu^*\left(\bigcup_{n = 1}^{\infty} A_n\right) \leq \sum_{n = 1}^{\infty} \sum_{k = 1}^{\infty} \mu(B_{n, k}) \leq \sum_{n = 1}^{\infty} \mu^*\left(A_n\right) + \epsilon$$
+            Como $\epsilon$ es arbitrario, tenemos el resultado. 
+        \end{enumerate}
+        \item Supongamos que $B \subset C \cup (B \Delta C)$, por lo que, por la subaditividad de $\mu^*$ obtenemos que: 
+        $$\mu^*(B) \leq \mu^*(C) + \mu^*(B \Delta C) \iff \mu^*(B) - \mu^*(C) \leq \mu^*(B \Delta C)$$
+        Intercambiando $B$ y $C$ obtenemos la otra desigualdad.
+        \item Basta tomar $\{A_n\}_{n \in \mathbb{N}} = \{\emptyset\}$ como recubrimiento de $\emptyset$ y usar que como $\mu$ es un contenido, entonces $\mu(\emptyset) = 0$. El resto de propiedades ya han sido demostradas, dada cualquier funcion $\mu$ y en particular si $\mu$ es un contenido.
+    \end{enumerate}
+\end{proof}
+\begin{teorema}
+    Sea $X$ un conjunto, $\mathcal{A}$ una álgebra en $X$ y $\mu: \mathcal{A} \to [0, \infty]$ un contenido. Entonces: 
+    \begin{enumerate}
+        \item $\mathcal{A} \subset \mathcal{A}_{\mu}$ y la medida exterior $\mu^*$ coincide con $\mu$ en $\mathcal{A}$. 
+        \item $\mathcal{A}_{\mu}$ es una $\sigma$-álgebra, y la restricción de $\mu^*$ a $\mathcal{A}_{\mu}$ es $\sigma$-aditiva
+        \item La función $\mu^*$ es la única extensi´n $\sigma$-aditiva y positiva de $\mu$ a $\sigma$-álgebra generada por $\mathcal{A}$ y también es la única extensión $\sigma$-aditiva y positiva de $\mu$ a $\mathcal{A}_{\mu}$.
+    \end{enumerate}
+\end{teorema}
+\begin{proof}
+    
+\end{proof}
