@@ -1,7 +1,6 @@
 # Fdb version 4
-["pdflatex"] 1758626623.21111 "c:/Users/pablo/OneDriveUCM/Universidad/Calculo Integral/apuntes/MedidaEIntegracionLebesgue/main.tex" "main.pdf" "main" 1758626626.50506 0
-  "C:/Users/pablo/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1745317414 81245 e934491651270ee8e50db9289c70f8a4 ""
-  "C:/Users/pablo/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/tcti1095.pk" 1758626507 15464 9209e5461df2248a3f97724be41605ba ""
+["pdflatex"] 1761502058.14798 "c:/Users/pablo/OneDriveUCM/Universidad/Calculo Integral/apuntes/MedidaEIntegracionLebesgue/main.tex" "main.pdf" "main" 1761502062.26515 0
+  "C:/Users/pablo/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1760109493 81245 e934491651270ee8e50db9289c70f8a4 ""
   "C:/Users/pablo/AppData/Local/MiKTeX/fonts/tfm/public/mathabx/matha10.tfm" 1744013534 1372 84a1ef28ab0d13263326e8d7d854aaa0 ""
   "C:/Users/pablo/AppData/Local/MiKTeX/fonts/tfm/public/mathabx/matha12.tfm" 1744962932 1380 ceb7b5923e3abb0aafa2e35608b22d77 ""
   "C:/Users/pablo/AppData/Local/MiKTeX/fonts/tfm/public/mathabx/matha6.tfm" 1744013539 1380 5f328d9a92ea6dd75eba04691d285ce9 ""
@@ -9,7 +8,6 @@
   "C:/Users/pablo/AppData/Local/MiKTeX/fonts/tfm/public/rsfs/rsfs10.tfm" 1745317418 688 37338d6ab346c2f1466b29e195316aa4 ""
   "C:/Users/pablo/AppData/Local/MiKTeX/fonts/tfm/public/rsfs/rsfs5.tfm" 1745317421 684 3a51bd4fd9600428d5264cf25f04bb9a ""
   "C:/Users/pablo/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1744012880 12036088 cc96f14e36e2546fd115f4b03425efbd ""
-  "C:/Users/pablo/AppData/Local/Programs/MiKTeX/fonts/tfm/jknappen/ec/tcti1095.tfm" 993062558 1620 f8200b113a15837b4c49dca3f7704b92 ""
   "C:/Users/pablo/AppData/Local/Programs/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1233951848 1004 54797486969f23fa377b128694d548df ""
   "C:/Users/pablo/AppData/Local/Programs/MiKTeX/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1233951848 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
   "C:/Users/pablo/AppData/Local/Programs/MiKTeX/fonts/tfm/public/amsfonts/euler/eufm10.tfm" 1233951852 1040 b84415f97d114011685943ade933dc71 ""
@@ -45,6 +43,7 @@
   "C:/Users/pablo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb" 1247596667 30251 6afa5cb1d0204815a708a080681d4674 ""
   "C:/Users/pablo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb" 1247596667 36299 5f9df58c2139e7edcf37c8fca4bd384d ""
   "C:/Users/pablo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb" 1247596667 36741 0ee9e374ec3e30da87cdfb0ea3575226 ""
+  "C:/Users/pablo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb" 1247596666 37166 8ab3487cbe3ab49ebce74c29ea2418db ""
   "C:/Users/pablo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb" 1247596666 35469 dcf3a5f2fc1862f5952e3ee5eb1d98c4 ""
   "C:/Users/pablo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1247596667 35752 024fb6c41858982481f6968b5fc26508 ""
   "C:/Users/pablo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1247596667 32722 d7379af29a190c3f453aba36302ff5a9 ""
@@ -323,13 +322,13 @@
   "C:/Users/pablo/AppData/Local/Programs/MiKTeX/tex/latex/zref/zref-abspage.sty" 1695383086 2269 4fe6fb3396214c91f164d45faf9bec45 ""
   "C:/Users/pablo/AppData/Local/Programs/MiKTeX/tex/latex/zref/zref-base.sty" 1695383086 20785 f7d1133a287929598a897c93f8f4c44b ""
   "Preamble/Preamble.tex" 1758016749 11367 60276e4726061d3cee4e911b74ebcb9e ""
-  "Theory/1 - Medida de Lebesgue.tex" 1758626511 18975 a6fd479e59f7eca17dc30a7f3885187a ""
+  "Theory/1 - Medida de Lebesgue.tex" 1761502053 33107 ed1a2891aa80d236c7055320bbf8a16f ""
   "Theory/Theory.tex" 1758016761 147 1b0874820071d4695abcd702b9b9b08d ""
   "c:/Users/pablo/OneDriveUCM/Universidad/Calculo Integral/apuntes/MedidaEIntegracionLebesgue/main.tex" 1758626622 698 75d8a2270a2dd524302be06461b0eb3e ""
-  "main.aux" 1758626625 8680 98429c04daf5082da373ca75fcb71b95 "pdflatex"
-  "main.out" 1758626626 835 ada84e61b48d9a9811a4c1e9b3e0fa90 "pdflatex"
+  "main.aux" 1761502061 14999 4b658d14aa599b208ac839482d319ac5 "pdflatex"
+  "main.out" 1761502061 1643 06924838e4f7664cd51b04fbf072647c "pdflatex"
   "main.tex" 1758626622 698 75d8a2270a2dd524302be06461b0eb3e ""
-  "main.toc" 1758626626 410 d7ab437ff932f702646da048c97c4324 "pdflatex"
+  "main.toc" 1761502061 747 d1f051e3fa38118b565db005aa663be5 "pdflatex"
   (generated)
   "main.aux"
   "main.log"

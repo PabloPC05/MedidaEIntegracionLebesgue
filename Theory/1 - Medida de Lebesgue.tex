@@ -45,7 +45,7 @@
 \end{lema}
 
 \subsection{Contenidos y medidas}
-\begin{definición}[Contenido]
+\begin{definición}[Contenido/Pre-medida]
     Sea $X$ un conjunto y $\Sigma$ un anillo en $X$. Se dice que una función $\mu: \Sigma \to [0, +\infty]$ es un contenido en $\Sigma$ si: 
     \begin{enumerate}
         \item $\mu(\emptyset) = 0$
@@ -53,6 +53,9 @@
         \[\mu\left(\bigcup_{k = 1}^{n} E_k\right) = \sum_{k = 1}^{n} \mu(E_k)\]
     \end{enumerate}
 \end{definición}
+
+
+
 \begin{definición}[Medida]
     Sea $X$ un conjunto y $\Sigma$-algebra en $X$. Se dice que una función $\mu: \Sigma \to [0, +\infty]$ es un contenido en $\Sigma$ si: 
     \begin{enumerate}
@@ -106,16 +109,7 @@
     \[\left(\prod_{i = 1}^{n}I_i\right) \cap \left(\prod_{i = 1}^{n} J_i\right) = \prod_{i = 1}^{n} (I_i \cap J_i)\]
     es decir, la intersección de dos intervalos en $\mathbb{R}^n$ es un intervalo en $\mathbb{R}^n$. 
 \end{observación}
-\ejemplo{
-    La familia $\mathcal{J}_0$ de uniones finitas de intervalos limitados disjuntos dos a dos de la forma
-    $$\prod_{i=1}^{b} [a_n, b_n) = [(a_1, \ldots, a_n), (b_1, \ldots, b_n))$$
-    en el conjunto $\mathbb{R}^n$ forman un anillo. La familia $\mathcal{J}$ de uniones finitas de intervalos disjuntos dos a dos de forma
-    $$\mathbb{R}^n \cap \prod_{i=1}^{b} [a_n, b_n) = \mathbb{R}^n \cap [(a_1, \ldots, a_n), (b_1, \ldots, b_n))$$
-    donde $-\infty \leq a_i < b_i \leq +\infty$ para todo $i = 1, \ldots, n$ forman un álgebra.\\
-    Llamamos \textbf{contenido de Jordan} o \textbf{contenido de Peano-Jordan} a la función $\mu: \mathcal{J} \to [0, +\infty]$ definida como:
-    $$\mu\left(\prod_{i=1}^{n} [a_i, b_i)\right) = \prod_{i=1}^{n} (b_i - a_i)$$
-    donde, por simplicidad, entendemos que $0 \cdot (+\infty) = 0$. Para calcular el contenido de Jordan de un conjunto cualquiera $\mathcal{J}$, como es una unión finita de intervalos disjuntos de la forma $\prod_{i=1}^{b} [a_n, b_n)$, basta con sumar los contenidos de todos los intervalos que lo componen.
-}
+
 \begin{lema}
     Sea $X$ un conjunto, $\mathcal{A}$ un anillo en $X$ y $\mu$ un contenido (medida) en $\mathcal{A}$. Entonces se cumplen las siguientes propiedades:
     \begin{enumerate}
@@ -181,17 +175,18 @@
 \begin{definición}[Diferencia de dos conjuntos]
     Dado un conjunto $X$ y $A, B \subset X$ llamamos \textbf{diferencia} de $A$ y $B$ al conjunto $A \Delta B = (A \setminus B) \cup (B \setminus A)$.
 \end{definición}
-\begin{definición}[Medida exterior de Lebesgue]
+\begin{definición}[Medida exterior a partir de un contenido]
     Sea $X$ un conjunto $\mathcal{A} \subset \mathcal{P}(X)$ tal que $X \in \mathcal{A}$ y $\mu: \mathcal{A} \to [0, \infty]$. Definimos la función $\mu^*: \mathcal{P}(X) \to [0, \infty]$ asociada a $\mu$ tal que $\forall A \subset X:$
     $$\mu^*(A) = \inf\left\{\sum_{n \in \mathbb{N}} \mu(A_n) : \{A_n\}_{n \in \mathbb{N}} \subset \mathcal{A}, A \subset \bigcup_{n \in \mathbb{N}} A_n\right\}$$
 \end{definición}
 \begin{definición}[Conjunto medible]
     Sea $A$ un subconjunto de $X$ y $\mu^*$ una medida exterior en $X$. Se dice que $A$ es $\mu$-\textbf{medible} si: 
     $$\forall \epsilon > 0 \exists A_{\epsilon} \in \mathcal{A} : \mu^*(A \Delta A_{\epsilon}) < \epsilon$$
+    Al conjunto de todos los conjuntos $\mu$-medibles se les denota por $\mathcal{A}_{\mu}$.
 \end{definición}
 
-\begin{lema}
-    Sea $X$ un conjunto, $\mathcal{A} \subset \mathcal{P}(X)$ tal que $X \in \mathcal{A}, B, C \subset X$ y $\mu: \mathcal{A} \to [0, \infty]$-¿¿medida exterior??. Entonces: 
+\begin{lema}[Propiedades de una medida exterior (asociada a un contenido)]
+    Sea $X$ un conjunto, $\mathcal{A} \subset \mathcal{P}(X)$ tal que $X \in \mathcal{A}, B, C \subset X$ y $\mu: \mathcal{A} \to [0, \infty]$-contenido, y $\mu^*$ la medida exterior asociada. Entonces: 
     \begin{enumerate}
         \item $\mu^*(B) \leq \mu^*(C)$ si $B \subset C$
         \item $\mu^*$ es $\sigma$-subaditiva, es decir, $\mu^*\left(\cup_{n = 1}^{\infty} A_n\right) \leq \sum_{n = 1}^{\infty} \mu^*(A_n)$
@@ -220,11 +215,190 @@
 \begin{teorema}
     Sea $X$ un conjunto, $\mathcal{A}$ una álgebra en $X$ y $\mu: \mathcal{A} \to [0, \infty]$ un contenido. Entonces: 
     \begin{enumerate}
-        \item $\mathcal{A} \subset \mathcal{A}_{\mu}$ y la medida exterior $\mu^*$ coincide con $\mu$ en $\mathcal{A}$. 
+        \item $\mathcal{A} \subset \mathcal{A}_{\mu} = \{E \in X : \forall \epsilon > 0 \exists A_{\epsilon} : \mu^*(E \Delta A_{\epsilon}) < \epsilon \}$ y la medida exterior $\mu^*$ coincide con $\mu$ en $\mathcal{A}$. 
         \item $\mathcal{A}_{\mu}$ es una $\sigma$-álgebra, y la restricción de $\mu^*$ a $\mathcal{A}_{\mu}$ es $\sigma$-aditiva
-        \item La función $\mu^*$ es la única extensi´n $\sigma$-aditiva y positiva de $\mu$ a $\sigma$-álgebra generada por $\mathcal{A}$ y también es la única extensión $\sigma$-aditiva y positiva de $\mu$ a $\mathcal{A}_{\mu}$.
+        \item La función $\mu^*$ es la única extensión $\sigma$-aditiva y positiva de $\mu$ en $\sigma$-álgebra generada por $\mathcal{A}$ y también es la única extensión $\sigma$-aditiva y positiva de $\mu$ a $\mathcal{A}_{\mu}$.
     \end{enumerate}
 \end{teorema}
 \begin{proof}
+    %%TODO
+\end{proof}
+\begin{definición}[Pre-medida]
+    Sea $X$ un conjunto, $\mathcal{A}$ un anillo en $X$ y $\mu: \mathcal{A} \to [0, \infty]$ un contenido. Se dice que $\mu$ es una pre-medida si es $\sigma$-aditiva.
+\end{definición}
+\begin{teorema}[Extension de un contenido a una medida]
+    Sea $X$ un conjunto, $\mathcal{A}$ un anillo en $X$ y $\mu: \mathcal{A} \to [0, \infty]$ una pre-medida sobre un anillo $\sigma$-finito (dada $\{X_n\}_{n \in \mathbb{N}} \subset \mathcal{A}$ monótona creciente y con $\mu(X_n) < +\infty$ para todo $n \in \mathbb{N}$ y $X = \cup_{n \in \mathbb{N}} X_n$). \\\\
+    Para cada $n$ denotaremos $\mu_{n} = \mu|_{\mathcal{A}_{n}}$ donde $\mathcal{A}_n = \{A \in \mathcal{A} : A \subset X_n\}$ (álgebra de conjuntos en $X_n$) y denotaremos por $\Sigma_n$ la $\sigma$-álgebra sobre $A$ sobre la cual $\mu^*$ es una medida exterior basada en $\mu$. Definimos: 
+    $$\Sigma = \{A \subset X : A \cap X_n \in \Sigma_n \forall n \in \mathbb{N}\} \quad \overline{\mu}(A) = \lim_{n \to \infty} \mu_n(A \cap X_n) : A \in \Sigma$$ 
+    Entonces $\Sigma$ es una $\sigma$-álgebra que no depende  de los $X_n$ escogidos, y $\overline{\mu}$ es la única medida en $\Sigma$ tal que $\overline{\mu}|_{\mathcal{A}} = \mu$.
+\end{teorema}
+\begin{proof}
+    Cada una de las $\mu_n: A \to [0, \infty]$ es un contenido $\sigma$-aditivo y finito, por lo que por el teorema anterior podemos obtener las $\sigma$-algebras $\Sigma_n$ y las medidas $\mu^*_n |_{\Sigma_n}$. \\
+    Sea $A_k$ tal que $A_k \cap X_n \in \Sigma_n$ para todo $n,k \in \mathbb{N}$. Por ser $\Sigma_n$ una $\sigma$-álgebra, tenemos que $(\cup_{k = 1}^{\infty} A_k) \cap X_n = \cup_{k = 1}^{\infty} (A_k \cap X_n) \in \Sigma_n$ para todo $n \in \mathbb{N}$ por lo que $\cup_{k = 1}^{\infty} A_k \in \Sigma$.
+    %%TODO 
+\end{proof}
+\begin{definición}[Clase compacta]
+    Sea una familia $\mathcal{K}$ de subconjuntos de un conjunto $X$, se dice que es una \textbf{clase compacta} si:
+    $$\forall \{K\}_{n \in \mathbb{N}} : \bigcap_{n \in \mathbb{N}} K_n = \emptyset \exists N \in \mathbb{N} : \bigcap_{n = 1}^{N} K_n = \emptyset$$
+\end{definición}
+\ejemplo{
+    Una familia arbitraria de conjuntos compactos de un espacio topologico es una clase compacta. En efecto parar demostrar el contrarecíproco tomemos una sucesion de compactos $\{K_n\}_{n \in \mathbb{N}}$ tal que $\cap_{n = 1}^{N} K_n = \emptyset \forall N \in \mathbb{N}$. Definimos $\overline{K_n} = \cup_{k = 1}^{n} K_k$. Entonces $\{\overline{K_n}\}_{n \in \mathbb{N}}$ es una sucesion encadenadad de conjuntos compactos y no vacíos, por lo que el teorema d ela interseccion compacta de Cantor, $\cap_{n \in \mathbb{N}} \overline{K_n} \neq \emptyset$ y como consecuencia $\cap_{n \in \mathbb{N}} K_n \neq \emptyset$.
+}
+\begin{teorema}
+    Sea $\mu$ un contenido sobre $\mathcal{A}$ un anillo $\mathcal{A}$. Supongamos que existe una clase compacta $\mathcal{K}$ que aproxima a $\mu$ en el sentido de que: 
+    Para todo $A \in \mathcal{A}$ con $\mu(A) < +\infty$ y para todo $\epsilon > 0$ existen $K_{\epsilon} \in \mathcal{K}$ y $A_{\epsilon} \in \mathcal{A}$ tales que
+    $$A_{\epsilon} \subset K_{\epsilon} \subset A \quad \text{y} \quad \mu(A \setminus A_{\epsilon}) < \epsilon$$
+    Entonces, $\mu$ es $\sigma$-aditiva. En particular esto es cierto si la la clase compacta $\mathcal{K}$ está contenida en $\mathcal{A}$ y para todo $A \in \mathcal{A}$ se cumple que 
+    $$\mu(A) = \sup\{\mu(K) : K \subset A, K \in \mathcal{K}\}$$
+\end{teorema}
+\begin{proof}
+    %%TODO
+\end{proof}
+\ejemplo{
+    Consideremos los anillos 
+}
+\ejemplo{
+    Consideremos el anillo $\mathcal{J}_0$ de uniones finitas de intervalos limitados de la forma $[a, b)$ en $\mathbb{R}$ y sea $g: \mathbb{R} \to \mathbb{R}$ una funcion creciente y continua por la izquierda, y sea $v_g[a, b) = g(b) - g(a)$, con $v_g$ un contenido sobre $\mathcal{J}_0$. Entonces, por el teorema anterior, llamese $\mu_g$ a la medida generada por el Teorema de la extensiones de medidas $\sigma$-finitas, se llama \textbf{medida de Lebesgue-Stieltjes} asociada a $g$.
+}
+\begin{definición}[Medida completa]
+    Sea $\mathcal{A}$ una $\sigma$-álgebra en $X$ y $\mu: \mathcal{A} \to [0, +\infty]$ una medida. $\mu$ se dice completa si dado $E \in \mathcal{A}$ tal que $\mu(E) = 0$ entonces para cualquier $A \subset E \in \mathcal{A}$ $A$ es medible y $\mu(A) = 0$
+\end{definición}
+\begin{teorema}
+    Las medidas dadas por el Teorema de Extensión de Medidas $\sigma$-finitas son completas.
+\end{teorema}
+\begin{teorema}
+    Son equivalentes: 
+    \begin{enumerate}
+        \item $A$ es $\mu$-medible
+        \item $\forall E \in \mathcal{A} : \mu^*(E) = \mu^*(E \cap A) + \mu^*(E \setminus A)$ (Condición de Carathéodory)
+        \item $\forall \epsilon > 0 \exists B \in \mathcal{A} : \mu^*(A \Delta B) < \epsilon$ (Condición de aproximación)
+    \end{enumerate}
+\end{teorema}
+\subsection{Propiedades de la medida de Lebesgue}
+\subsubsection{Medida de Lebesgue y topología euclidiana}
+\begin{definición}[Contenido de Jordan]
+    Llamamos \textbf{contenido de Jordan} o \textbf{contenido de Peano-Jordan} a la función $\mu: \mathcal{J} \to [0, +\infty]$ definida como:
+    $$\mu\left(\prod_{i=1}^{n} [a_i, b_i)\right) = \prod_{i=1}^{n} (b_i - a_i)$$
+    donde, por simplicidad, entendemos que $0 \cdot (+\infty) = 0$. Para calcular el contenido de Jordan de un conjunto cualquiera $\mathcal{J}$, como es una unión finita de intervalos disjuntos de la forma $\prod_{i=1}^{b} [a_n, b_n)$, basta con sumar los contenidos de todos los intervalos que lo componen.
+\end{definición}
+\begin{definición}[Medida de Lebesgue]
+Sea $\mathcal{J}_0$ el anillo de \emph{uniones finitas disjuntas de rectángulos limitados} de la forma 
+\[
+\prod_{k=1}^{n} [a_k, b_k) \subset \mathbb{R}^n,
+\] 
+y sea $\mu$ el \emph{contenido de Jordan} definido sobre $\mathcal{J}_0$.  
+
+Aplicando el \emph{Teorema de Extensión de Medidas $\sigma$-finitas} (por ejemplo, tomando la secuencia $X_k = [-k, k]^n$ para $k \in \mathbb{N}$), se obtiene una única medida 
+\[
+\lambda_n : \mathcal{L}_n \to [0,\infty]
+\] 
+llamada \textbf{medida de Lebesgue} en $\mathbb{R}^n$, definida sobre la $\sigma$-álgebra $\mathcal{L}_n$ de \emph{conjuntos Lebesgue medibles}, que extiende el contenido de Jordan y es $\sigma$-aditiva.  
+
+Además, para cualquier subconjunto $X \in \mathcal{L}_n$, podemos definir la \emph{medida restringida} 
+\[
+\lambda_X(A) := \lambda_n(A \cap X), \quad \forall A \in \mathcal{L}_n.
+\]  
+\end{definición}
+\begin{definición}[Medida exterior de Lebesgue]
+    Siguiendo el teorema anterior de obtención de una medida exterior a partir de un contenido sobre un anillo, en este caso el contenido de Jordan sobre el anillo $\mathcal{J}_0$ de uniones finitas de intervalos limitados de la forma $[a, b)$ en $\mathbb{R}$, obtenemos la \textbf{medida exterior de Lebesgue} $\lambda^*: \mathcal{P}(\mathbb{R}) \to [0, +\infty]$ definida como:
+    $$\lambda^*(A) = \inf\left\{\sum_{n \in \mathbb{N}} \mu(A_n) : \{A_n\}_{n \in \mathbb{N}} \subset \mathcal{J}_0, A \subset \bigcup_{n \in \mathbb{N}} A_n\right\}$$
+\end{definición}
+\begin{definición}[Medida de Lebesgue-Stieltjes]
+    Sea $g: \mathbb{R} \to \mathbb{R}$ una función creciente y continua por la izquierda. La \textbf{medida de Lebesgue-Stieltjes} asociada a $g$ es la medida de Lebesgue $\mu_g$ generada por el contenido definido en el anillo de uniones finitas de intervalos limitados de la forma $[a, b)$ como:
+    $$v_g[a, b) = g(b) - g(a)$$
+
     
+\end{definición}
+\begin{lema}
+    Todo intervalo $I = \prod_{k = 1}^{n} I_k \in \mathbb{R}^n$ es Lebesgue-medible. Si $I$ es degenerado, entonces $\lambda_n(I) = 0$. Si no, su medida coincide con el producto de las longitudes de sus aristas, es decir:
+    $$\lambda_n(I) = \prod_{k = 1}^{n} (b_k - a_k)$$
+\end{lema}
+\begin{proof}
+    Realicemos una distinción de casos: 
+    \begin{enumerate}
+        \item Si $I$ es degenerado, quiere decir que está contenido en un hiperplano paralelo a los ejes de coordenadas de $\mathbb{R}^n$, por lo que $I$ es medible y $\lambda_n(I) = 0$.
+        \item Supongamos que $I$ es no-degenerado. Si $I = \prod_{k = 1}^{n} [a_k, b_k) \subset \mathbb{R}^n$ el resultado es evidente dada la definición de medida de lebesgue. 
+        \item Consideremos ahora cualquier tipo de intervalo de la forma $I = \prod_{k = 1}^{n} I_k \subset\mathbb{R}^n$. Definamos $a_k = \inf{I_k}, b_k = \sup{I_k}$. Observese que $\partial I$ está contenida en la unión de $2n$ hiperplanos por lo que $\partial I$ es medible (por ser la medida de Lebesgue completa) y $\lambda_n(\partial I) = 0$. Ahora definamos $\mathcal{J} = \prod_{k = 1}^{n} [a_k, b_k)$ tenemos que $\mathcal{J}$ es medible y $\partial I$ es medible por lo tanto $I = (I \setminus \mathcal{J}) \cup (\mathcal{J}\setminus (\mathcal{J} \setminus I))$ es medible ya que $I \setminus \mathcal{J}, \mathcal{J} \setminus I \subset \partial I$. luego son medibles y se cumple que $$\lambda_n(I \setminus \mathcal{J}) = \lambda_n(\mathcal{J} \setminus I) = 0$$
+        y además, 
+        $$\lambda_n(I) = \lambda_n(I \setminus \mathcal{J}) + \lambda_n(\mathcal{J}) - \lambda_n(\mathcal{J} \setminus I) = \lambda_n(\mathcal{J}) = \prod_{k = 1}^{n} (b_k - a_k)$$    
+    \end{enumerate}
+\end{proof}
+
+\begin{proposición}
+    Todo conjunto abierto $U \subset \mathbb{R}^n$ es medible-Lebesgue. Es decir, $\lambda_n$ es una medida de Borel con respecto la topología usual, por tanto $\mathcal{B}(\mathbb{R}^n) \subset \mathcal{L}_n$.
+\end{proposición}
+\begin{proof}
+    Todo abierto de $\mathbb{R}^n$ es una unión numerable de intervalos abiertos, y por tanto medible.
+\end{proof}
+\begin{proposición}
+    La medida de Lebesgue en $\mathbb{R}^n$ es regula, es decir, para todo $A \in \mathcal{L}_n$ se cumple que:
+    \begin{enumerate}
+        \item Regularidad exterior: 
+        $$\lambda_n(A) = \inf\{\lambda_n(U) : U \supset A, U \text{ abierto}\}$$
+        \item Regularidad interior:
+        $$\lambda_n(A) = \sup\{\lambda_n(K) : K \\subset A, K \text{ compacto}\}$$
+    \end{enumerate}
+\end{proposición}
+\begin{proof}
+    %%TODO
+\end{proof}
+\begin{definición}[Conjunto $G_{\delta}$]
+    Un conjunto $A \subset \mathbb{R}^n$ es un conjunto $G_{\delta}$ si existe una sucesión numerable de conjuntos abiertos $\{U_k\}_{k \in \mathbb{N}}$ tal que:
+    $$A = \bigcap_{k = 1}^{\infty} U_k$$
+    
+\end{definición}
+\begin{definición}[Conjunto $F_{\sigma}$]
+    Un conjunto $A \subset \mathbb{R}^n$ es un conjunto $F_{\sigma}$ si existe una sucesión numerable de conjuntos cerrados $\{F_k\}_{k \in \mathbb{N}}$ tal que:
+    $$A = \bigcup_{k = 1}^{\infty} F_k$$
+\end{definición}
+
+\begin{observación}
+    Como consecuencia del resultado anterior, concluimos que para todo conjunto Lebesgue medible $A \in \mathcal{L}_n$ existe un conjunto $U \in G_{\delta}$ y un conjunto $F \in F_{\sigma}$ tales que 
+    $$F \subset A \subset U \quad \text{y} \quad \lambda_n(F) = \lambda_n(U) = \lambda_n(A)$$
+\end{observación}
+\subsubsection{Transformaciones de conjuntos medibles}
+\begin{definición}[Aplicación lipschitziana]
+    Sea $X, Y$ dos espacios métricos con métricas $d_X, d_Y$ respectivamente. Una función $f: X \to Y$ es \textbf{lipschitziana} si existe una constante $C > 0$ tal que:
+    $$\forall x_1, x_2 \in X : d_Y(f(x_1), f(x_2)) \leq C d_X(x_1, x_2)$$
+\end{definición}
+\begin{teorema}
+    Sea $F: (\mathbb{R}^n, ||\cdot||) \to (\mathbb{R}^m, ||\cdot||)$ una aplicación lipschitziana de constante $L \in \mathbb{R}^{+}$. Entonces para todo conjunto Lebesgue medible $A \subset \mathbb{R}^n$ el conjunto $F(A)$ también es Lebesgue medible y $\lambda_n(F(A)) \leq L^n\lambda_n(F(A))$
+\end{teorema}
+\begin{proof}
+    Comencemos observando que si tenemos un hipercubo $I = \prod_{k = 1}^{n} [a_k, b_k) \subset \mathbb{R}^n$ de arista $r$ y de centro $y$, y $x \in I$ entonces
+    $$\|F(x) - F(y)\|_{\infty} \leq L \|x - y\|_{\infty} \leq L \frac{r}{2}$$
+    por lo que si $F(y) = (z_1, \ldots, z_n)$ entonces $F(x) \in \prod_{k = 1}^{n} [z_k - L\frac{r}{2}, z_k + L\frac{r}{2})$ y por lo tanto
+    $$F(I) = F(\prod_{k = 1}^{n} [a_k, b_k)) \subset \prod_{k = 1}^{n} [z_k - L\frac{r}{2}, z_k + L\frac{r}{2})$$
+    lo que implica que $\lambda_n(F(I)) \leq (Lr)^n = L^n \lambda_n(I)$. 
+    \\Ahora, lo demostraremos para conjuntos medibles más generales. Por la regularidad interior de $\lambda_n(A) = \sup\{\lambda_n(K) : K \subset A, K \text{ compacto}\}$ podemos definir el conjunto 
+    $$B = A \setminus \bigcup_{j = 1}^{\infty} K_j$$
+    Entonces por construcción tenemos que $\lambda_n(B) = \lambda_n(A) - \lim_{j \to \infty} \lambda_n(K_j) = 0$, por tanto podemos deducir que  
+    $$A = \bigcup_{j = 1}^{\infty} K_j \cup B$$
+    donde cada $K_j$ se compacto y cada $B$ es un conjunto de medida nula. 
+    Como $F$ es continua
+    $$F\left(\bigcup_{j = 1}^{\infty} K_j\right) = \bigcup_{j = 1}^{\infty} F(K_j)$$
+    y también es Borel-medible, por ser unión numerable de compactos. Así, se llega a demostrar que $F(B)$ también es medible. Sea $\varepsilon > 0$, podemos cubrir $B$ con una familia numerable de hipercubos de la formal
+    $$I_j = \prod_{k = 1}^{n} [a_{j,k}, b_{j,k})$$
+    de arista $r_j$ y centro $y_j = (y_{j, 1}, \ldots, y_{j,n})$ tales que $\sum_{j \in \mathbb{N}} \lambda_n(I_j) < \varepsilon$. TEnemos entones que 
+    $$\sum_{j = 1}^{\infty} \lambda_n(F(I_j)) \leq \sum_{k = 1}^{\infty} L^n r^n_j = L^n \sum_{j = 1}^{\infty} r_{j}^n = L^n \lambda_n(I_j) < L^n \varepsilon$$
+    Como $\varepsilon$ es arbitrario, se dedice que $F(B)$ tiene medida nula, y como la desigualdad se da para cualquier hipercubo, se tiene que
+    $$\lambda_n(F(A)) \leq L^n \lambda_n(A)$$
+\end{proof}
+\begin{corolario}
+    Sea $F: (\mathbb{R}^n, ||\cdot||) \to (\mathbb{R}^m, ||\cdot||)$ una aplicación bilipschitziana (función lipschitziana con inversa lipschitziana) de constante $L_2$ y $F^{-1}$ con constante $L_1$. Entonces para todo conjunto Lebesgue medible $A \subset \mathbb{R}^n$ el conjunto $F(A)$ también es Lebesgue medible y
+    $$L_1^{n} \lambda_n(A) \leq \lambda_n(F(A)) \leq L_2^{n} \lambda_n(A)$$
+\end{corolario}
+\begin{corolario}
+    Sea $F: (\mathbb{R}^n, ||\cdot||) \to (\mathbb{R}^m, ||\cdot||)$ una isometría para todo conjunto Lebesgue medible $A \subset \mathbb{R}^n$ el conjunto $F(A)$ también es Lebesgue medible y $\lambda_n(F(A)) = \lambda_n(A)$
+\end{corolario}
+\begin{teorema}
+    Sea $A \subset \mathbb{R}^n$ un conjunto medible Lebesgue de medida finita. Entonces
+    \begin{enumerate}
+        \item $\lambda_n(A + h) = \lambda_n(A) \quad \forall h \in \mathbb{R}^n$
+        \item $\lambda_n(U(A)) = \lambda_n(A) \quad \text{para todo operador lineal ortogonal } U: \mathbb{R}^n \to \mathbb{R}^n$
+        \item $\lambda_n(cA) = |c|^n \lambda_n(A) \quad \forall c \in \mathbb{R}$
+    \end{enumerate}
+\end{teorema}
+\begin{proof}
+    %%TODO
 \end{proof}
