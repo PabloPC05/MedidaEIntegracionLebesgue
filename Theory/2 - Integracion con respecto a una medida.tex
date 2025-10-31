@@ -181,4 +181,194 @@
         \item $0 \leq f_1(x) \leq f_2(x) \leq \ldots \leq \infty$ para todo $x \in X$. 
         \item $f_n(x) \to f(x)$ cuando $n \to \infty$ para todo $x \in X$
     \end{enumerate}
+    Entonces $f$ es medible y se cumple que 
+    $$\lim_{n \to \infty} \int_X f_n d\mu = \int_X f d\mu$$
 \end{teorema}
+\begin{proof}
+
+    Como $\int f_n \leq \int f_{n+1}$ existe $\alpha \in \mathbb{R}^+$ tal que 
+    $$\lim_{n \to \infty} \int_X f_n d\mu = \alpha$$
+
+    Para ver la igualdad, dividiremos la demostración en las dos desigualdades: 
+    \begin{enumerate}
+        \item $\alpha \leq \int_X f d\mu$: Sea $f = \sup_{n \in \mathbb{N}} f_n$, entonces como $f$ es medible y $f_n \leq f$ se cumple que $\int f_n \leq \int f$ para todo $n$ por lo que tomando límites cuando $n \to \infty$ se tiene que $\alpha \leq \int_X f d\mu$.
+        \item $\alpha \geq \int_X f d\mu$: Sea $s$ cualquier función simple medible tal que $0 \leq s \leq f$, sea $c \in (0,1)$ y definamos $E_n = \{x : f_n(x) \geq c s(x)\}$, $n \in \mathbb{N}$. Cada $E_n$ es medible, $E_n \subset E_{n + 1}$ y $X = \bigcup_{n = 1}^{\infty} E_n$. Para ver esta igualdad considérese $x \in X$, entonces se pueden dar dos casos: 
+        \begin{enumerate}
+            \item Si $f(x) = 0$ entonces $s(x) = 0$ (pues $s \leq f$) así que $cs(x) = 0 \leq f_1(x)$ luego, $x \in E_1$ 
+            \item Si $f(x) > 0$ entonces $cs(x) < f(x)$ ya que $c < 1$ por lo que existe alguna $n$ tal que $x \in E_n$.
+        \end{enumerate}
+        También se cumple que para $n \in \mathbb{N}$ que $\int_X f_n \geq \int_{E_n} f_n \geq c \int_{E_n} s$ por lo que tomando el límite 
+        $$\alpha \geq c \lim_{n \to \infty} \int_{E_n} s d\mu = c \int_X s$$
+        donde la última igualdad se debe a la continuidad por abajo de la medida. Como $c \in (0,1)$ fue fijado arbitrariamente si tomamos $c \to 1^-$, obtenemos que $\alpha \geq \int_X s$. Como $s$ fue fijada arbitrariamente con $0 \leq s \leq f$, y por definición tenemos que 
+        \[ \int_X f d\mu = \sup\left\{ \int_X s\,d\mu : s \text{ simple },\ 0 \leq s \leq f \right\} \]
+        concluimos que $\alpha \geq \int_X f d\mu$.
+    \end{enumerate}
+\end{proof}
+\begin{teorema}[Teorema de Beppo Levi]
+    sea $(f_n)_{n \in \mathbb{N}}$ una sucesión de funciones medibles $f_n: X \to \mathbb{R}^+$ tal que 
+    $$f(x) = \sum_{n = 1}^{\infty} f_n(x) \text{ para todo } x \in X$$
+    Entonces $f$ es medible y se cumple que 
+    $$\int_X f d\mu = \sum_{n = 1}^{\infty} \int_X f_n d\mu$$
+\end{teorema}
+\begin{proof}
+    Primero, existen sucesiones crecientes $(s^1_n)_{n \in \mathbb{N}}$ y $(s^2_n)_{n \in \mathbb{N}}$ de funciones simples y medibles tales que $s_n \leq f_1$, $s_n \leq f_2$, $s^1_n \to f_1$ y $s^2_n \to f_2$. Definiendo $s_n = s^1_n + s^2_n$, observse que $s_n \to f_1 + f_2$. Entonces por el Teoema de la convergencia monótona anterior y por la linealidad de la integral en funciones simples, se tiene que 
+    $$\int_X f_1 + f_2 d\mu = \int_X f_1 + \int_X f_2$$
+    Sea $g_n = f_1 + \ldots + f_n$, entonces la sucesión $(g_n)_{n \in \mathbb{N}}$ crece monótonamente y converge a $f$. Aplicando la induccion observamos que 
+    $$\int_X g_n d\mu = \sum_{k = 1}^{n} \int_X f_k d\mu$$
+    Aplicando de nuevo el Teorema de la convergencia monótona se obtiene la igualdad deseada:
+    $$\int_X f d\mu = \lim_{n \to \infty} \int_X g_n d\mu = \lim_{n \to \infty} \sum_{k = 1}^{n} \int_X f_k d\mu = \sum_{k = 1}^{\infty} \int_X f_k d\mu$$
+\end{proof}
+\begin{lema}[Lema de Fatou]
+    Sea $\{f_n\}$ una sucesón de funciones medibles $f_n: X \to \mathbb{R}^*$ para cada entero positivo $n$. Entonces se cumple que
+    $$\int_X \liminf_{n \to \infty} f_n d\mu \leq \liminf_{n \to \infty} \int_X f_n d\mu$$
+\end{lema}
+\begin{proof}
+    Definamos $g_k(x) = \inf_{n \geq k} f_n(x) : k \in \mathbb{N}$. $x \in X$. Entocnes $g_k \leq f_k$, por lo que 
+    $$\int_X g_k d\mu \leq \int_X f_k d\mu$$
+    para todo $k \in \mathbb{N}$. Además, $0 \leq g_k \leq g_{k + 1}$, cada $g_k$ es medible y
+    $$\lim_{k \to \infty} g_k(x) = \liminf_{n \to \infty} f_n(x)$$
+    Por el teorema de la convergencia monótona, se tiene que
+    $$\int_X \liminf_{n \to \infty} f_n d\mu = \int_X \lim_{k \to \infty} g_k d\mu = \lim_{k \to \infty} \int_X g_k d\mu \leq \liminf_{n \to \infty} \int_X f_n d\mu$$  
+\end{proof}
+\subsection{Integracion de funciones reales y complejas}
+\begin{definición}
+    Definimos $\mathcal{L}^1((X, \mathcal{A}, \mu), \mathbb{C}) = \mathcal{L}(X, \mathbb{C})$ como el conjunto de todas las funciones complejas medibles $f$ sobre $X$ tales que
+    $$\int_X |f| d\mu < \infty$$
+    Cabe señalar que la medibilidad de $f$ implica la de $|f|$, por lo tanto, la integral anterior está bien definida.\\
+    Los elementos de $\mathcal{L}^1(X, \mathbb{C})$ se llaman funciones integrables en sentido de Lebesgue (respecto de $\mu$) o funciones sumables.
+\end{definición}
+\begin{definición}
+    Sea $f = u + iv$ donde $u$ y $v$ son funciones reales medibles sobre $X$ y supongamos que $f \in \mathcal{L}^1(X, \mathbb{C})$. Definimos para todo conjunto medible $E$: 
+    $$\int_E f d\mu = \int_E u^+ d\mu - \int_E u^- d\mu + i\left(\int_E v^+ d\mu - \int_E v^- d\mu\right)$$
+    donde $g^+ = \max\{g, 0\}$ y $g^- = \max\{-g, 0\}$ para cualquier función real $g$. Las funciones $u^+, u^-, v^+, v^-$ son funciones reales medibles no negativas y sumables.. Además tenemos que $u^+ u^-, v^+ v^- \leq |f|$ por lo que cada una de estas cuatro integrales existe y es finita. 
+\end{definición}
+\begin{teorema}
+    Sean $f, g \in \mathcal{L}^1(X, \mathbb{C})$ y $\alpha, \beta \in \mathbb{C}$. Entonces $\alpha f + \beta g \in \mathcal{L}^1(X, \mathbb{C})$ y
+    $$\int_X [\alpha f(x) + \beta g(x)] d\mu(x) = \alpha \int_X f(x) d\mu(x) + \beta \int_X g(x) d\mu(x)$$
+\end{teorema}
+\begin{proof}
+    La medibilidad de $\alpha f + \beta g$ es inmediata. Además, se tiene que
+    $$\int_X |\alpha f(x) + \beta g(x)| d\mu(x) \leq |\alpha| \int_X |f(x)| d\mu(x) + |\beta| \int_X |g(x)| d\mu(x) < \infty$$
+    Por lo tanto $\alpha f + \beta g \in \mathcal{L}^1(X, \mathbb{C})$. Finalmente queda probar que 
+    $$\int_X f(x) + g(x) d\mu(x) = \int_X f(x) d\mu(x) + \int_X g(x) d\mu(x)$$
+    y que 
+    $$\int_X cf(x) d\mu(x) = c \int_X f(x) d\mu(x)$$
+    Definamos la función auxiliar $h = f + g$, tenemos que 
+    $$h^+ - h^- = f^+ - f^- + g^+ - g^-$$
+    reordenado, esto es 
+    $$h^+ + f^- + g^- = h^- + f^+ + g^+$$
+    Así, por la linealidad de la integral para funciones no negativas, tenemos que 
+    $$\int h^+ + \int f^- + \int g^- = \int f^+ + \int g^+ + \int h^-$$
+    Y como cada una de estas integrales es finita, espejando obtenemos la primera igualdad.\\
+    Para la segunda igualdad, sea $\alpha$ distinguamos casos: 
+    \begin{enumerate}
+        \item Si $\alpha \geq 0$, entonces el resultado es inmediato 
+        \item Si $\alpha = -1$ entonces el resultado también es inmediato usando que $(-g)^+ = g^-$
+        \item Si $\alpha = i$ el resultado también es sencillo: 
+        $$\int (if) = \int i(u + iv) = \int (-v + iu) = \int -v + i \int u = i\int f$$
+    \end{enumerate}
+    Combinando estos resultados, obtenemos la segunda igualdad para $\alpha \in \mathbb{C}$ arbitrario.
+\end{proof}
+\begin{teorema}
+    Sea $f \in \mathcal{L}^1(X, \mathbb{C})$. Entonces
+    $$\left|\int_X f(x) d\mu(x)\right| \leq \int_X |f(x)| d\mu(x)$$
+\end{teorema}
+\begin{proof}
+    Definamos $z = \int_X f(x) d\mu(x)$. Como $z$ es un número compejo, existe un número complejo $\alpha$ tal que 
+    $$\alpha = \begin{cases}
+        0 \text{ si } z = 0 \\
+        \frac{z}{|z|} \text{ si } z \neq 0
+    \end{cases} \implies |z| = \begin{cases}
+        0 \text{ si } z = 0\\
+        1 \text{ si } z \neq 0
+    \end{cases}$$ y tal que $\alpha \cdot z = |z|$. Sea $u = \Re(\alpha f)$. Entonces $u \leq |\alpha f| = |f|$. Por tanto 
+    $$\int_X f(x)d\mu = |z| = \alpha z = \alpha \int_X f(x) d\mu(x) = \int_X \alpha f(x) d\mu(x) = \int_X \Re(\alpha f(x)) d\mu(x) + i \int_X \Im(\alpha f(x)) d\mu(x) = $$
+    $$ = \int u \leq \int |f|$$
+    La parte imaginaria de la integral es nula ya que es igual a un módulo, i.e. a un número real. 
+\end{proof}
+\begin{teorema}[Teorema de la convergencia dominada de Lebesgue]
+    Sea $(f_n)_{n \in \mathbb{N}}$ una sucesión de funciones complejas y medibles en $X$ tales que 
+    $$f(x) = \lim_{n \to \infty} f_n(x) \text{ para todo } x \in X$$
+    Si existe una función $g \in \mathcal{L}^1(X, \mathbb{C})$ tal que
+    $$|f_n(x)| \leq g(x) \text{ para todo } x \in X \text{ y todo } n \in \mathbb{N}$$
+    Entonces $f \in \mathcal{L}^1(X, \mathbb{C})$ y se cumple que
+    $$\lim_{n \to \infty} \int_X |f_n(x) - f(x)| d\mu(x) = 0$$
+    y además que 
+    $$\lim_{n \to \infty} \int_X f_n(x) d\mu(x) = \int_X f(x) d\mu(x)$$
+\end{teorema}
+\begin{proof}
+    Como $|f_n(x)| \leq g(x)$ para todo $n$ y $f_n(x) \to f(x)$, tomando límite obtenemos $|f(x)| \leq g(x)$. Como $f$ es medible (límite de funciones medibles) y $g \in \mathcal{L}^1(X, \mathbb{C})$, se tiene que $f \in \mathcal{L}^1(X, \mathbb{C})$.
+    
+    Además, observemos que:
+    $$|f_n(x) - f(x)| \leq |f_n(x)| + |f(x)| \leq 2g(x)$$
+    
+    Como $f_n(x) \to f(x)$ para todo $x \in X$, tenemos que $|f_n(x) - f(x)| \to 0$ para todo $x \in X$, es decir:
+    $$\liminf_{n \to \infty} |f_n(x) - f(x)| = 0 \text{ para todo } x \in X$$
+    
+    Aplicamos el Lema de Fatou a las funciones no negativas $h_n(x) = 2g(x) - |f_n(x) - f(x)| \geq 0$:
+    $$\int_X \liminf_{n \to \infty} h_n \, d\mu \leq \liminf_{n \to \infty} \int_X h_n \, d\mu$$
+    
+    Como $\liminf_{n \to \infty} h_n(x) = 2g(x) - \liminf_{n \to \infty} |f_n(x) - f(x)| = 2g(x) - 0 = 2g(x)$, tenemos:
+    $$\int_X 2g \, d\mu \leq \liminf_{n \to \infty} \int_X (2g - |f_n - f|) \, d\mu$$
+    
+    Por linealidad de la integral:
+    $$\int_X 2g \, d\mu \leq \liminf_{n \to \infty} \left[\int_X 2g \, d\mu - \int_X |f_n - f| \, d\mu\right]$$
+    
+    Como $\int_X 2g \, d\mu < \infty$ (pues $g \in \mathcal{L}^1$), podemos escribir:
+    $$\int_X 2g \, d\mu \leq \int_X 2g \, d\mu - \limsup_{n \to \infty} \int_X |f_n - f| \, d\mu$$
+    donde usamos que $\liminf_{n \to \infty}(-a_n) = -\limsup_{n \to \infty}(a_n)$. Restando $\int_X 2g \, d\mu$ en ambos lados:
+    $$0 \leq -\limsup_{n \to \infty} \int_X |f_n - f| \, d\mu$$
+    
+    Es decir:
+    $$\limsup_{n \to \infty} \int_X |f_n - f| \, d\mu \leq 0$$
+    
+    Como siempre $\int_X |f_n - f| \, d\mu \geq 0$, tenemos:
+    $$0 \leq \liminf_{n \to \infty} \int_X |f_n - f| \, d\mu \leq \limsup_{n \to \infty} \int_X |f_n - f| \, d\mu \leq 0$$
+    
+    Por tanto, existe el límite y:
+    $$\lim_{n \to \infty} \int_X |f_n - f| \, d\mu = 0$$
+    
+    Finalmente, para la segunda conclusión:
+    $$\left|\int_X f_n \, d\mu - \int_X f \, d\mu\right| = \left|\int_X (f_n - f) \, d\mu\right| \leq \int_X |f_n - f| \, d\mu \to 0$$
+    
+    Por tanto:
+    $$\lim_{n \to \infty} \int_X f_n(x) \, d\mu(x) = \int_X f(x) \, d\mu(x)$$
+\end{proof}
+\subsection{Espacios $L^p$}
+\begin{definición}
+    Sean $p \in [1, \infty)$ y ($X$, $\mathcal{A}$, $\mu$) un espacio de medida. Definimos
+    $$\mathcal{L}^p(X, \mathbb{F}) \equiv \mathcal{L}^p(X, \mu, \mathbb{F}) = \{f: X \to \mathbb{F} : f \text{ medible }, \|f\|_p < \infty\}$$
+    donde $\|\cdot \|_p$ se define como 
+    $$\|f\|_p = \left(\int_X |f(x)|^p d\mu(x)\right)^{1/p} \in [0, \infty)$$
+    Definimos además $\mathcal{L}(X, \mathbb{F}) = \mathcal{L}^p(F, \mathbb{F})|_{\sim}$ 
+    donde $f \sim g \iff \mu(\{x \in X : f(x) \neq g(x)\}) = 0$. Observese que si $f, g \in \mathcal{L}^p(X, \mathbb{F})$ y $f \sim g$ entonces $\|f\|_p = \|g\|_p$. \\
+    Definimos también
+    $$\mathcal{L}^{\infty}(X, \mathbb{F}) = \{f: X \to \mathbb{F} : f \text{ medible }, \|f\|_{\infty} < \infty\}$$
+    donde 
+    $$\|f\|_{\infty} = \inf\{M \geq 0 : |f(x)| \leq M \text{ para casi todo } x \in X\}$$
+    y por definición $\inf\{\emptyset\} = \infty$. 
+\end{definición}
+\begin{proposición}[Desigualdad de Young]
+    Sea $p \in (1, \infty)$, entonecs para $a, b \in \mathbb{R}^+$ se tiene que 
+    $$ab \leq \frac{a^p}{p} + \frac{b^q}{q}$$
+\end{proposición}
+\begin{proof}
+    
+\end{proof}
+\begin{proposición}[Desigualdad de Hölder]
+    Sean $p \in [1, \infty]$, $(X, \mu$)-espacio de medida y $f, g: X \to \mathbb{F}$ medibles. Entonces
+    $$\|f g\|_1 \leq \|f\|_p \|g\|_q$$
+\end{proposición}
+\begin{proof}
+    
+\end{proof}
+\begin{proposición}[Desigualdad de Minkowski]
+    Sea $p \in [1, \infty]$, $(X, \mu)$-espacio de medida y $f, g \in \mathcal{L}^p(X, \mathbb{F})$. Entonces 
+    $$\|f + g\|_p \leq \|f\|_p + \|g\|_p$$    
+\end{proposición}
+\begin{definición}[Espacio de Banach]
+    Un espacio normado $(V, \|\cdot\|)$ se dice un espacio de Banach si es completo, es decir, si toda sucesión de Cauchy en $V$ converge a un elemento de $V$.
+\end{definición}
+\ejemplo{
+    El espacio $\mathcal{B}(X, \mathbb{F})$ de funciones limitadas $f: X \to \mathbb{F}$ se dice que es un espacio de Banach con la norma $\|f\|_{\infty} = \sup_{x \in X} |f(x)|$.
+}
