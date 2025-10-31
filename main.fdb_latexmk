@@ -1,6 +1,7 @@
 # Fdb version 4
-["pdflatex"] 1761502058.14798 "c:/Users/pablo/OneDriveUCM/Universidad/Calculo Integral/apuntes/MedidaEIntegracionLebesgue/main.tex" "main.pdf" "main" 1761502062.26515 0
+["pdflatex"] 1761914108.62532 "c:/Users/pablo/OneDriveUCM/Universidad/Calculo Integral/apuntes/MedidaEIntegracionLebesgue/main.tex" "main.pdf" "main" 1761914113.69722 0
   "C:/Users/pablo/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1760109493 81245 e934491651270ee8e50db9289c70f8a4 ""
+  "C:/Users/pablo/AppData/Local/MiKTeX/fonts/pk/ljfour/public/esint/dpi657/esint10.pk" 1744013566 13616 87216c765e5895f4d78d9d7a9a1dd5f5 ""
   "C:/Users/pablo/AppData/Local/MiKTeX/fonts/tfm/public/mathabx/matha10.tfm" 1744013534 1372 84a1ef28ab0d13263326e8d7d854aaa0 ""
   "C:/Users/pablo/AppData/Local/MiKTeX/fonts/tfm/public/mathabx/matha12.tfm" 1744962932 1380 ceb7b5923e3abb0aafa2e35608b22d77 ""
   "C:/Users/pablo/AppData/Local/MiKTeX/fonts/tfm/public/mathabx/matha6.tfm" 1744013539 1380 5f328d9a92ea6dd75eba04691d285ce9 ""
@@ -322,13 +323,14 @@
   "C:/Users/pablo/AppData/Local/Programs/MiKTeX/tex/latex/zref/zref-abspage.sty" 1695383086 2269 4fe6fb3396214c91f164d45faf9bec45 ""
   "C:/Users/pablo/AppData/Local/Programs/MiKTeX/tex/latex/zref/zref-base.sty" 1695383086 20785 f7d1133a287929598a897c93f8f4c44b ""
   "Preamble/Preamble.tex" 1758016749 11367 60276e4726061d3cee4e911b74ebcb9e ""
-  "Theory/1 - Medida de Lebesgue.tex" 1761502053 33107 ed1a2891aa80d236c7055320bbf8a16f ""
-  "Theory/Theory.tex" 1758016761 147 1b0874820071d4695abcd702b9b9b08d ""
+  "Theory/1 - Medida de Lebesgue.tex" 1761836478 39918 a699c1f87c1e47aa7e2a88d2a6bb729f ""
+  "Theory/2 - Integracion con respecto a una medida.tex" 1761914106 14059 86ac1e52fe76a3e37f431c9190689a0a ""
+  "Theory/Theory.tex" 1761780323 208 9f576f3803d758c5cd4fa87da5002f9b ""
   "c:/Users/pablo/OneDriveUCM/Universidad/Calculo Integral/apuntes/MedidaEIntegracionLebesgue/main.tex" 1758626622 698 75d8a2270a2dd524302be06461b0eb3e ""
-  "main.aux" 1761502061 14999 4b658d14aa599b208ac839482d319ac5 "pdflatex"
-  "main.out" 1761502061 1643 06924838e4f7664cd51b04fbf072647c "pdflatex"
+  "main.aux" 1761914113 20391 89d4bf7d67dfbe8f57a52243687b06dc "pdflatex"
+  "main.out" 1761914113 2643 736863b29d7fbbb65e70fb6d566218f7 "pdflatex"
   "main.tex" 1758626622 698 75d8a2270a2dd524302be06461b0eb3e ""
-  "main.toc" 1761502061 747 d1f051e3fa38118b565db005aa663be5 "pdflatex"
+  "main.toc" 1761914113 1160 5e0a74262dfded5e309231b6832adcbd "pdflatex"
   (generated)
   "main.aux"
   "main.log"

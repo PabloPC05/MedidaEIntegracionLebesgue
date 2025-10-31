@@ -276,6 +276,10 @@
 \end{teorema}
 \subsection{Propiedades de la medida de Lebesgue}
 \subsubsection{Medida de Lebesgue y topología euclidiana}
+\begin{definición}[familia de semi-abiertos acotados en $\mathbb{R}^n$]
+    Denotamos $\mathcal{J}_0$ a la familia de todos los intervalos semi-abiertos acotados en $\mathbb{R}^n$, dado por 
+    $$\mathcal{J}_0 = \{[a_1, b_1) \times [a_2, b_2) \times \cdots \times [a_n, b_n) : a_i, b_i \in \mathbb{R}, a_i < b_i \text{ para } i = 1, \ldots, n\}$$
+\end{definición}
 \begin{definición}[Contenido de Jordan]
     Llamamos \textbf{contenido de Jordan} o \textbf{contenido de Peano-Jordan} a la función $\mu: \mathcal{J} \to [0, +\infty]$ definida como:
     $$\mu\left(\prod_{i=1}^{n} [a_i, b_i)\right) = \prod_{i=1}^{n} (b_i - a_i)$$
@@ -400,5 +404,66 @@ Además, para cualquier subconjunto $X \in \mathcal{L}_n$, podemos definir la \e
     \end{enumerate}
 \end{teorema}
 \begin{proof}
-    %%TODO
+    \begin{enumerate}
+        \item Es consecuencia del corolario anterior. 
+        \item Veamos que, para todo cubo cerrado $K$ se cumple que 
+        $$\lambda_n(U(K)) = \lambda_n(K)$$
+        Supongamos que esto no es cierto para algún cubo cerrado $K$, es decir, 
+        $$\lambda_n(U(K)) = r \lambda_n(K)$$
+        donde $r = \frac{\lambda_n(U(I))}{\lambda_n(I)} \neq 1$. Vamos a demostrar que, para toda bola abierta $Q \subset I$ centrada en el origen se tiene que 
+        $$\lambda_n(U(Q)) = r\lambda_n(Q) \quad \text{siempre que } U(Q) \subset I = [0,1]^n$$
+
+        Supongamos que el cubo $K$ tiene arista de longitud $d$. Dividamos dicho cubo en $p^n$ subcubos: $K_1, K_2, \ldots, K_{p^n}$ cada uno con arista de longitud $d/p$. Los subcubos son disjuntos salvo en sus caras. Como los subcubos son traslaciones unas de otras, es decir, podemos expresarlos de forma $K_j = K_1 + t_j$ donde $t_j$ es un vector de traslación, se tiene que 
+
+        $$\lambda_n(U(K_j)) = \lambda_n(U(K_1 + t_j)) = \lambda_n(U(K_1) + U(t_j)) = \lambda_n(U(K_1))$$
+        ya que la medida de Lebesgue es invariante por traslaciones por el apartado anterior. 
+        Entonces, tenemos que 
+        $$\lambda_n(U(K)) = \sum_{j = 1}^{p^n} \lambda_n(U(K_j)) = p^n \lambda_n(U(K_1))$$
+        Entones tenemos que 
+        $$\begin{cases}
+            \lambda_n(U(K)) = r \lambda_n(K) \\
+            \lambda_n(K) = p^n \lambda_n(K_1) \\
+        \end{cases} \implies \lambda_n(U(K_1)) = r \lambda_n(K_1)$$
+        Dado que podemos tomar cualquier $p$, es decir, podemos subdividir tanto como queramos, podemos trasladar los cubos y obtenemos que $\lambda_n(U(K^{\prime})) = r \lambda_n(K^{\prime})$ para cualquier cubo de la forma $K^{\prime} = qK + h$ donde $q \in \mathbb{Q}^{+}$ indica la escala y $h \in \mathbb{R}^n$ la traslación. Es decir, que se cumple para todo los cubos con vértices en coordenadas racionales y aristas paralelas a los ejes. \\
+        Ahora extendamos el resultado a bolas abiertas: Sea $Q$ una bola abierta centrada en el origen. Dado cualquier $\varepsilon > 0$, tomemos dos bolas auxiliares $Q_1, Q_2$ tales que $Q_1 \subset Q \subset Q_2$ y $\lambda_n(Q_2 \setminus Q_1) < \varepsilon$. Construimos $E_1$:= Unión de cubos que está contenido en $Q_1$ (aproximación por dentro) y $E_2$:= Unión de cubos que contiene a $Q_2$ (aproximación por fuera), entonces sabemos que se cumple que 
+        $$Q_{1} \subset E_1 \subset Q \subset E_2 \subset Q_2$$
+        Entonces, por lo demostrado anteriormente tenemos que 
+        $$\lambda_n(U(E_1)) = r \lambda_n(E_1) \quad \text{y} \quad \lambda_n(U(E_2)) = r \lambda_n(E_2)$$
+        Y además, como $E_1 \subset Q \subset E_2$, se tiene que 
+        $$U(E_1) \subset U(Q) \subset U(E_2) \implies \lambda_n(U(E_1)) \leq \lambda_n(U(Q)) \leq \lambda_n(U(E_2)) = $$
+        $$ = r \lambda_n(E_1) \leq \lambda_n(U(Q)) \leq r \lambda_n(E_2) \implies \lambda_n(U(Q)) = r \lambda_n(Q)$$
+        Pero dado que $U(Q) = Q$ debido a que es una bola centrada en el origen, llegamos a la contradicción $r = 1$.
+
+        \item Es evidente para hipercubos con aristas paralelas a los ejes coordenados, lo cual es suficiente. 
+    \end{enumerate}
 \end{proof}
+\begin{corolario}
+    Toda aplicación lineal $L: \mathbb{R}^n \to \mathbb{R}^n$ lleva conjuntos medibles-Lebesgue en conjuntos medibles-Lebesgue, y se cumple que para todo conjunto medible-Lebesgue $A \subset \mathbb{R}^n$ de medida finita:
+    $$\lambda_n(L(A)) = |\det(L)| \lambda_n(A)$$
+    Además, también se cumple que la preimagen de todo conjunto medible-Lebesgue de una aplicación lineal es medible-Lebesgue.
+\end{corolario}
+\begin{proof}
+    Hagamos una distinción de casos: 
+    \begin{enumerate}
+        \item Si $|det(L)| = 0$, entones la imagen de $\mathbb{R}^n$ es un subespacio lineal propio y tiene medida nula
+        \item Supongamos que $|\det(L)| \neq 0$. Entonces, $L$ se puede escribir como una composición $L = U L_0 V$ donde $U$ y $V$ son operadores lineales orotogonales y $L_0$ está ddado por una matriz diagonal con autovalores estrictamente positivos $\alpha_j$. Entonces como $\|det(L)\| = \alpha_1 \cdot \ldots \cdot \alpha_n$ y las aplicaciones $U$ y $V$ preservan la medida por el teorema anterior, basta considerar $L_0$. Sea $A = [b_i, c_i]^n$ es un cubo con aristas paralelas a los ejes de coordenadas, entonces la igualdad
+        $$\lambda_n(L_0(A)) = (\alpha_i c_i - \alpha_i b_i)^n = \alpha_i (c_i - b_i)^n = |\det(L_0)| \lambda_n(A)$$
+        es evidente. Por lo tanto, dado que esto se cumple para cubos con aristas paralelas a los ejes coordenados, se cumple para cualquier conjunto medible-Lebesgue de medida finita (siguiendo el procedimiento del teorema anterior).
+    \end{enumerate}
+\end{proof}
+\begin{teorema}
+    Sea $A \subset \mathbb{R}^n$ Borel-medible. Si $F: A \subset \mathbb{R} \to \mathbb{R}^m$ es continua, entonces es de Borel. 
+\end{teorema}
+\begin{proof}
+    Sea $B$ abierto en $(\mathbb{R}^m, \tau_m)$, $f^{-1}(B)$ es abierto en $(\mathbb{R}^n, \tau_n)$. Denotamos $f^{-1}(\tau_m) = \{f^{-1}(B) : B \in \tau_m\}$. Tenemos que $f^{-1}(\tau_m) \subset \tau_n$ y así $\sigma(f^{-1}(\tau_m)) \subset \mathcal{B}_n$. Ahora bien, como la imagen inversa conmuta con las uniones y las intersecciones, $\sigma(f^{-1}(\tau_m)) = f^{-1}(\sigma(\tau_m)) = f^{-1}(\mathcal{B}_m)$ por lo que $\mathcal{B}_m \subset \mathcal{B}_n$.
+\end{proof}
+\begin{lema}
+    Sea $A \subset \mathbb{R}^n$ un conjunto Lebesgue medible, y sea $B \subset \mathbb{R}^m$ un conjunto Lebesgue medible. Entonces $A \times B \subset \mathbb{R}^{n+m}$ es Lebesgue medible y se tiene que $\lambda_{n+m}(A \times B) = \lambda_n(A) \cdot \lambda_m(B)$
+\end{lema}
+\begin{proof}
+    Dado un recubrimiento $\mathcal{U} \subset \mathcal{J}_0$ de $A$ y un recubrimiento $\mathcal{V} \subset \mathcal{J}_0$ de $B$, el conjunto $\mathcal{W} = \{U \times V : U \in \mathcal{U}, V \in \mathcal{V}\}$ es un recubrimiento en $\mathcal{J}_0$ de $A \times B$ y además, $\lambda_{n+m}(U \times V) = \lambda_n(U) \cdot \lambda_m(V)$ de donde se sigue el resultado.
+\end{proof}
+\subsubsection{Existencia de conjuntos no medibles}
+\begin{definición}
+    Consideremos la relación de eqiuivalencia en $\mathbb{R}$ definida como $x \sim y \iff x - y \in \mathbb{Q}$. Utilicemos el axioma de elecciñon para construir el conjunto $V \subset [0,1]$ que contiene exactamente un elemento de cada clase de equivalencia de $\sim$
+\end{definición}

@@ -1,0 +1,184 @@
+\section{Integración con respecto de una medida}
+\subsection{Propiedades de las funciones medibles}
+\begin{definición}[Medibilidad de funciones]
+    Sea $(X, \mathcal{A})$ un espacio medible y sea $(Y, \mathcal{B})$ otro espacio medible. Una función $f: X \to Y$ es \textbf{medible} si para todo conjunto medible $B \in \mathcal{B}$, el conjunto inverso $f^{-1}(B) \in \mathcal{A}$.
+\end{definición}
+\begin{lema}
+    Sea $\mathcal{A}$ una $\sigma$-álgebra y $f: (X, \mathcal{A}) \to (\mathbb{R}, \mathcal{B})$ es medible si y sólo si $f^{-1}((-\infty), c) \in \mathcal{A}$ para todo $c \in \mathbb{R}$. $f: (X, \mathcal{A}) \to (\overline{\mathbb{R}}, \overline{\mathcal{B}})$ es medible si y sólo si $f^{-1}((-\infty), c) \in \mathcal{A}$ para todo $c \in \mathbb{R}$ y $f^{-1}({\infty}), f^{-1}({-\infty}) \in \mathcal{A}$.
+\end{lema}
+\begin{proof}
+    $\Rightarrow$: Es trivial, ya que si $f$ es medible, por definición $f^{-1}(B) \in \mathcal{A}$ para todo $B \in \mathcal{B}$ y en particular para $B = (-\infty, c)$.\\
+    $\Leftarrow$: 
+    Dados $a > b$ se tiene que: 
+    \[ [a, b) = (- \infty, b) \setminus (- \infty, a), \quad (a, b) = \bigcup_{n \in \mathbb{N}} \left[a + \frac{b - a}{n +1}, b\right) \]
+    Puesto que todo abierto en $\mathbb{R}$ es unión numerable de intervalos abiertos se cumple que $f^{-1}(U) \in \mathcal{A}$ para todo $U \in \tau$ la topología usual de $\mathbb{R}$. Esto significa que $\sigma(f^{-1}(\tau)) = f^{-1}(\sigma(\tau)) = f^{-1}(\mathcal{B}) \subset \mathcal{A}$ por lo que $f$ es medible. 
+\end{proof}
+\begin{teorema}
+    Sean $f, g, f_n: (X, \mathcal{A}) \to (\mathbb{R}, \mathcal{B}), n \in \mathbb{N}$ funciones medibles con respecto a una $\sigma$-álgebra $\mathcal{A}$. Entonces:
+    \begin{enumerate}
+        \item La función $\varphi \circ f$ es medible para cualquier función de Borel $\varphi: \mathbb{R} \to \mathbb{R}$, en particular esto es cieto si $\varphi$ es continua.
+        \item $\alpha f + \beta g$ es medible para todo $\alpha, \beta \in \mathbb{R}$.
+        \item $f \cdot g$ es medible.
+        \item Si $g(x) \neq 0$ para todo $x \in X$, entonces $\frac{f}{g}$ es medible.
+        \item Si existe el límite $f_0(x) = \lim_{n \to \infty} f_n(x)$ para todo $x$, entones $f_0$ es medible. 
+        \item Las funciones $\sup_{n} f_n$, $\inf_{n} f_n$, $\limsup_{n \to \infty} f_n$ y $\liminf_{n \to \infty} f_n$ son medibles.
+    \end{enumerate}
+\end{teorema}
+\begin{proof}
+    (I) Sea $B \in \mathcal{B}$, entonces $(\varphi \circ f)^{-1}(B) = f^{-1}(\varphi^{-1}(B)) \in \mathcal{A}$, luego $\varphi \circ f$ es medible.
+
+    Por (I), para demostrar (II) basta con considerar el caso $\alpha = \beta = 1$ y observar que para $(-\infty, c) \in \mathcal{B}$,
+    \begin{align*}
+        (f + g)^{-1}((-\infty, c)) &= \{x \in X : f(x) + g(x) < c\} = \{x \in X : f(x) < c - g(x)\} \\
+        &= \bigcup_{r \in \mathbb{Q}} (\{x \in X : f(x) < r\} \cap \{x \in X : r < c - g(x)\}).
+    \end{align*}
+    El lado derecho de esta relación pertenece a $\mathcal{A}$, puesto que las funciones $f$ y $g$ son medibles.
+
+    (III) Dedúcese de la igualdad $fg = \frac{1}{4}[(f + g)^2 - f^2 - g^2]$ y de las afirmaciones ya probadas; en particular, el cuadrado de una función medible es medible por (I).
+
+    (IV) Observando que la función $\varphi$ definida por
+    \[
+        \varphi(x) = \begin{cases}
+            \frac{1}{x}, & x \neq 0, \\
+            0, & x = 0,
+        \end{cases}
+    \]
+    es de Borel (comprobarlo), obtenemos (IV).
+
+    (V) Basta comprobar que
+    \[
+        \{x \in X : f_0(x) < c\} = \bigcup_{k=1}^{\infty} \bigcup_{n=1}^{\infty} \bigcap_{m=n+1}^{\infty} \left\{x \in X : f_m(x) < c - \frac{1}{k}\right\}.
+    \]
+
+    (VI) Basta observar que
+    \[
+        \overline{f}(x) = \lim_{n \to \infty} \max_{k=1,\ldots,n} f_k(x).
+    \]
+    y demostrar la medibilidad de $\max_{k=1,\ldots,n} f_k(x)$. Por inducción, esto se reduce al caso $n = 2$. En este caso, tenemos:
+    \[
+        \{x \in X : \max(f_1(x), f_2(x)) < c\} = \{x \in X : f_1(x) < c\} \cap \{x \in X : f_2(x) < c\}.
+    \]
+    La afirmación correspondiente para el ínfimo se verifica con la igualdad
+    \[
+        \underline{f}(x) = -\sup_{n \in \mathbb{N}}[-f_n(x)].
+    \]
+\end{proof}
+\begin{lema}
+    Sean $f_n: (X, \mathcal{A}) \to \mathbb{R}$ funciones medibles para cada $n \in \mathbb{N}$. Entonces, el conjunto $L$ de todos los puntos $x \in X$ tales que $\lim_{n \to \infty} f_n(x)$ existe, es finito y pertenece a $\mathcal{A}$. Lo mismo vale para los conjuntos $L^{-}$ y $L^{+}$ de todos aquellos puntos donde el límite es $-\infty$ o $+\infty$ respectivamente.
+\end{lema}
+\begin{proof}
+    Basta observar que el punto $x$ está en $L$ si y sólo si $(f_n(x))_{n \in \mathbb{N}}$ es una sucesión de Cauchy, es decir, $\forall k \in \mathbb{N} \exists N \in \mathbb{N}$ tal que $|f_p(x) - f_q(x)| < \frac{1}{k}$ para todo $p, q \geq N$. Es decir, 
+    $$L = \bigcap_{k = 1}^{\infty} \bigcup_{N = 1}^{\infty} \bigcap_{p, q \geq N} \{x : f_p(x) - f_q(x) < \frac{1}{k}\} \in \mathcal{A}$$
+    Los casos de $L^{-}$ y $L^{+}$ se demuestran de forma análoga.
+\end{proof}
+\begin{definición}
+    Una función $f: (X, \mathcal{A}) \to \mathbb{R}$ se dice que es simple si es combinación lineal (finita) de funciones características de conjuntos medibles. Esto es que $f$ viene dada por una familia de conjuntos medibles disjuntos dos a dos $\{A_k\}_{k \in \mathbb{N}} \subset \mathcal{A}$ y por coeficientes $\{\alpha_k\}_{k \in \mathbb{N}} \subset \mathbb{R}$, de modo que 
+    $$f(x) = \sum_{k = 1}^{n} \alpha_k \chi_{A_k}(x)$$
+\end{definición}
+\begin{observación}
+    La condición de que los conjuntos $A_k$ sean disjuntos y de que los coeficientes $\alpha_k$ sean distintos no es necesaria para la definición, pero garantiza que la expresión de $f = \sum_{k = 1}^{n} \alpha_k \chi_{A_k}$ es única salvo el orden de los sumandos.
+\end{observación}
+\begin{lema}
+    Sea $f: (X, \mathcal{A}) \to \mathbb{R}$ medible y y limitada. Entonces existe una sucesión de funciones simples $(s_n)_{n \in \mathbb{N}}$ tales que $s_n \leq s_{n + 1} \leq f$ y $\lim_{n \to \infty} s_n(x) = f(x)$ para todo $x \in X$.
+\end{lema}
+\begin{proof}
+    Sea $c = \sup_{x \in X}\{|f(x)| + 1\}$ Para cada $n \in \mathbb{N}$, particionamos el intervalo $[-c, c)$ en $n$ subintervalos disjuntos: 
+    $$I_j = [-c + c(j - 2)2^{-n}, -c + cj2^{-n})$$
+    de longitud $c2^{-n}$. Definamos entones $A_j = f^{-1}(I_j)$; está claro que $A_j \in \mathcal{A}$ ya que $\cup_{j = 1}^{n} A_j = X$. Sea $c_j$ el extremo izquierdo de $I_j$ y definamos la función simple $s_n(x) \leq s_{n + 1}$ y $s_n(x) \leq f(x)$ y también se cumple que 
+    $$\sup_{x \in X} |f(x) - s_n(x)| \leq 2^{-n}c$$ 
+    ya que la función $f$ lleva $A_j$ a $I_j$ y $s_n$ lleva $A_j$ a $c_j \in I_j$, que está a una distancia como máximo de $2^{-n}c$ de cualquier punto de $I_j$.
+\end{proof}
+\begin{corolario}
+    Sea $f: (X, \mathcal{A}) \to \mathbb{R}$ medible. Entonces para toda función $\mathcal{A}$-medible, $f$ existe una sucesión de funciones simples $s_n$ que converge a $f$ en cada punto. Si $f \geq 0$ satisface además que $s_n \leq s_{n + 1} \leq f$ 
+\end{corolario}
+\begin{proof}
+    Definamos las funciones $g_n$ por
+    $$g_n(x) = \begin{cases}
+        f(x), \text{ si } f(x) \in [-n, n] \\
+        0 , \text{ en otro caso}
+    \end{cases}$$
+    Podemos encontrar funciones simples $s_n$ tales que $|s_n(x) - g_n(x)| < \frac{1}{n}$. Es claro que $\lim_{n \to \infty} g_n(x) = f(x)$ para todo $x \in X$. Si $f \geq 0$ por el lema anterior podemos escoger $s_n$ tales que $s_n \leq s_{n + 1} \leq f$. 
+\end{proof}
+\subsection{La integral de funciones positivas}
+\begin{definición}[Integral de Lebesgue de funciones simples sobre un espacio de medidas]
+    Sea $(X, \mathcal{A}, \mu)$ un espacio de medida. Para cualquier función simple $f: (X, \mathcal{A}, \mu) \to \mathbb{R}^+$, definimos su integral de Lesbesgue respecto a la medida $\mu$ como 
+    $$\int_{X} f d\mu = \int_X f(x) d\mu(x) = \sum_{k = 1}^{n} c_k\mu(A_k)$$
+    Si la medida que estamos utilizando es evidente (por ejemplo, en el caso de usar la medida de Lebesgue), podemos omitir la referencia a la medida anterior y escribir $\int_X f(x)$. Si $A \in \mathcal{A}$, entonces la integral de $f$ sobre el conjunto $A$ se define como la integral de la función simple $\chi_A f$, es decir, 
+    $$\int_A f d\mu = \sum_{k = 1}^{n} c_k \mu(A_k \cap A)$$
+    Cuando no se indique el conjunto de integración, se entenderá que se está integrando con respecto al dominio de $f$. 
+\end{definición}
+\begin{lema}[Propiedades de la integral de funciones simples]
+    La integral de Lebesgue sobre funciones simples cumple las siguientes propiedades: 
+    \begin{enumerate}
+        \item Se verifica que
+        $$\int_X f(x) d \mu(x) \leq \sup_{x \in X} f(x) \mu(X)$$
+        \item Sea $\alpha, \beta \in \mathbb{R}$ entonces
+        $$ \int_X [\alpha f(x) + \beta g(x)] d\mu(x) = \alpha \int_{X} f(x) d\mu(x) + \beta \int_{X} g(x)d\mu(x)$$
+        En particular, si $A$ y $ B$ son conjuntos medibles disjuntos (en $\mathcal{A}$) se cumple que
+        $$\int_{A \cup B} f(x) d\mu(x) = \int_A f(x) d\mu(x) + \int_B f(x) d\mu(x)$$
+    \end{enumerate}
+\end{lema}
+\begin{proof}
+    \begin{enumerate}
+        \item Es evidente por la definición de la integral de funciones simples. Además la definición implica la igualdad 
+        $$\int_{X} \alpha f(x) d\mu(x) = \alpha \int_{X} f(x) d\mu(x)$$
+        Por lo tanto ahora basta con verificar la afirmación (2) para $\alpha = \beta = 1$. 
+        \item Sea $f$ función simple que toma valores distintos $c_k$ tales que se definen $A_k = \{x \in X : f(x) = c_k\}$ y sea $g$ una función que toma valores distintos $b_j$ tales que se definen $B_j = \{x \in X : g(x) = b_j\}$. Entonces los conjuntos $A_k \cap B_j = \{x \in X : f(x) = c_k\} \cap \{x \in X : g(x) = b_j\} \subset \mathcal{A}$-disjuntos, entonces $f + g = c_k + b_j$ en el conjunto $A_k \cap B_j$. \\ Sea $\{d_r\}_{r = 1}^{l} = \{c_k + b_j\}_{k = 1, \ldots, n; j = 1, \ldots, m}$ y $C_r = \bigcup\{A_k \cap B_j : c_k + b_j = d_r\}$ para $r = 1, \ldots, l$. Entonces
+        $$\int_{X} [f(x) + g(x)] = \sum_{r = 1}^{l} d_r \mu(C_r) = \sum_{r = 1}^{l} d_r \mu(\bigcup\{A_k \cap B_j : c_k + b_j = d_r\}) = $$
+        $$ = \sum_{k = 1}^{n} \sum_{j = 1}^{m} (c_k + b_j) \mu(A_k \cap B_j) = \sum_{k = 1}^{n} c_k\mu(A_k) + \sum_{j = 1}^{m} b_j \mu(B_j) = \int_X f(x) d\mu(x) + \int_X g(x) d\mu(x)$$
+        pues $\sum_{j = 1}^{m} \mu(A_k \cap B_j) = \mu(A_k)$ y $\sum_{k = 1}^{n}\mu(A_k \cap B_j) = \mu(B_j)$.
+        Esta última afirmación se deduce de $\chi_{A \cup B} = \chi_A + \chi_B$, ya que los conjuntos $\{A_k\}$ y $\{B_j\}$ son disjuntos y cubren todo $X$. 
+    \end{enumerate}
+\end{proof}
+\begin{corolario}
+    Si $f$ y $g$ son funciones simples tales que $f \leq g$ casi en todo punto, entonces 
+    $$\int_{X} f(x) d\mu(x) \leq \int_X g(x) d\mu(x)$$
+\end{corolario}
+\begin{proof}
+    Sea $A = \{x \in X : f(x) \leq g(x)\}$. Entonces $A \in \mathcal{A}$ y $\mu(X \setminus A) = 0$. Entonces, por hipótesis tenemos que $g - f$ es una función simple en $A$. No obstante, la función podría ser negativa en $X \setminus A$, por lo que definamos la constante positiva:
+    $$ c = \sup_{x \in X}\{|f(x) + g(x)|\}$$
+    Por tanto definamos la función auxiliar 
+    $$h(x) = g(x) - f(x) + c\chi_{X \setminus A}(x)$$
+    Entonces $h$ es una función simple no negativa en $X$: 
+    \begin{enumerate}
+        \item Si $x \in A$: 
+        $$h(x) = g(x) - f(x) + c \cdot 0 = g(x) - f(x) \geq 0$$
+        \item Si $x \in X \setminus A$:
+        $$h(x) = g(x) - f(x) + c \cdot 1 \geq -|g(x) - f(x)| + c \geq 0$$
+    \end{enumerate}
+    Ahora, por el lema anterior se cumple que 
+    $$\int_X h(x) d\mu(x) = \int_X gd\mu(x) - \int_X f(x) d\mu(x) + \int_{X} c\chi_{X \setminus A}(x) d\mu(x) \geq 0$$
+    Entonces, por la linealidad de la integral, tenemos que
+    $$\int_X g(x) d\mu(x) - \int_X f(x) d\mu(x) \geq 0$$
+\end{proof}
+\begin{definición}[Integral de Lebesgue de funciones positivas sobre un conjunto medible]
+    Sea $f: (X, \mathcal{A}) \to \mathbb{R}^+$ una función medible y $E \in \mathcal{A}$. Definimos la integral de Lesbesgue de $f$ respecto a $\mu$ sobre $E$ como 
+    $$\int_E f d\mu = \sup\left\{\int_E s d\mu : s: X \to \mathbb{R}^+ \text{ medible }, s \leq f \right\} \in \mathbb{R}^+$$
+    Al igual que para las funciones simples usaremos la notación $\int_E f \equiv \int_E f d\mu \equiv \int_E f(x) d\mu(x)$.
+\end{definición}
+\begin{lema}
+    Sean $f, g : (X, \mathcal{A}, \mu) \to [0, \infty)$ medibles, $A, B, E \in \mathcal{A}$. Entonces se tienen las siguientes propiedades:
+    \begin{enumerate}
+        \item[(I)] Si $0 \leq f \leq g$, entonces
+        $$\int_E f d\mu \leq \int_E g d\mu.$$
+        \item[(II)] Si $A \subset B$ y $f \geq 0$, entonces
+        $$\int_A f d\mu \leq \int_B f d\mu.$$
+        \item[(III)] Si $f \geq 0$ y $c$ es una constante con $0 \leq c < \infty$, entonces
+        $$\int_E cf d\mu = c \int_E f d\mu.$$
+        \item[(IV)] Si $f(x) = 0$ para todo $x \in E$, entonces
+        $$\int_E f d\mu = 0,$$
+        incluso si $\mu(E) = \infty$.
+        \item[(V)] Si $\mu(E) = 0$, entonces
+        $$\int_E f d\mu = 0,$$
+        aún si $f(x) = \infty$ para todo $x \in E$.
+        \item[(VI)] Si $f \geq 0$, entonces
+        $$\int_E f d\mu = \int_X \chi_E f d\mu.$$
+    \end{enumerate}
+\end{lema}
+\begin{teorema}[Teorema de Convergencia Monótona de Lebesgue]
+    Sea $(f_n)_{n \in \mathbb{N}}: (X, \mathcal{A}) \to \mathbb{R}$ una sucesión de funciones medibles en $X$, y supongamos que:
+    \begin{enumerate}
+        \item $0 \leq f_1(x) \leq f_2(x) \leq \ldots \leq \infty$ para todo $x \in X$. 
+        \item $f_n(x) \to f(x)$ cuando $n \to \infty$ para todo $x \in X$
+    \end{enumerate}
+\end{teorema}
