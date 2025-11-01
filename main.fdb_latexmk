@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1762020728.26283 "c:/Users/pablo/OneDriveUCM/Universidad/Calculo Integral/apuntes/MedidaEIntegracionLebesgue/main.tex" "main.pdf" "main" 1762020737.32919 0
+["pdflatex"] 1762020780.48587 "c:/Users/pablo/OneDriveUCM/Universidad/Calculo Integral/apuntes/MedidaEIntegracionLebesgue/main.tex" "main.pdf" "main" 1762020789.45756 0
   "C:/Users/pablo/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1760109493 81245 e934491651270ee8e50db9289c70f8a4 ""
   "C:/Users/pablo/AppData/Local/MiKTeX/fonts/pk/ljfour/public/esint/dpi657/esint10.pk" 1744013566 13616 87216c765e5895f4d78d9d7a9a1dd5f5 ""
   "C:/Users/pablo/AppData/Local/MiKTeX/fonts/tfm/public/mathabx/matha10.tfm" 1744013534 1372 84a1ef28ab0d13263326e8d7d854aaa0 ""
@@ -326,13 +326,13 @@
   "C:/Users/pablo/AppData/Local/Programs/MiKTeX/tex/latex/zref/zref-base.sty" 1695383086 20785 f7d1133a287929598a897c93f8f4c44b ""
   "Preamble/Preamble.tex" 1758016749 11367 60276e4726061d3cee4e911b74ebcb9e ""
   "Theory/1 - Medida de Lebesgue.tex" 1761836478 39918 a699c1f87c1e47aa7e2a88d2a6bb729f ""
-  "Theory/2 - Integracion con respecto a una medida.tex" 1762020727 41405 862283f80f8ec103f1ab4c296e1a536c ""
+  "Theory/2 - Integracion con respecto a una medida.tex" 1762020770 41468 e500526bddf4f8ef88f043a13bdc15c0 ""
   "Theory/Theory.tex" 1761780323 208 9f576f3803d758c5cd4fa87da5002f9b ""
   "c:/Users/pablo/OneDriveUCM/Universidad/Calculo Integral/apuntes/MedidaEIntegracionLebesgue/main.tex" 1758626622 698 75d8a2270a2dd524302be06461b0eb3e ""
-  "main.aux" 1762020736 27103 28d969769ea4ea8e760202837ec63567 "pdflatex"
-  "main.out" 1762020736 3420 e30421ed286ae738e03f86ffa608d5a6 "pdflatex"
+  "main.aux" 1762020788 27259 97dc446eef98384e1b7b283ecaca0529 "pdflatex"
+  "main.out" 1762020788 3739 5d78ea85fa0c0d3e1bc74dc6367ce333 "pdflatex"
   "main.tex" 1758626622 698 75d8a2270a2dd524302be06461b0eb3e ""
-  "main.toc" 1762020736 1476 bcdedb3af8f5782640e94c90baa60171 "pdflatex"
+  "main.toc" 1762020788 1591 b9e32621ce5967239c262d128f4b2bce "pdflatex"
   (generated)
   "main.aux"
   "main.log"
