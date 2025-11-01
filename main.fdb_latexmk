@@ -1,5 +1,5 @@
 # Fdb version 4
-["pdflatex"] 1761940817.64338 "c:/Users/pablo/OneDriveUCM/Universidad/Calculo Integral/apuntes/MedidaEIntegracionLebesgue/main.tex" "main.pdf" "main" 1761940828.0876 0
+["pdflatex"] 1762020728.26283 "c:/Users/pablo/OneDriveUCM/Universidad/Calculo Integral/apuntes/MedidaEIntegracionLebesgue/main.tex" "main.pdf" "main" 1762020737.32919 0
   "C:/Users/pablo/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1760109493 81245 e934491651270ee8e50db9289c70f8a4 ""
   "C:/Users/pablo/AppData/Local/MiKTeX/fonts/pk/ljfour/public/esint/dpi657/esint10.pk" 1744013566 13616 87216c765e5895f4d78d9d7a9a1dd5f5 ""
   "C:/Users/pablo/AppData/Local/MiKTeX/fonts/tfm/public/mathabx/matha10.tfm" 1744013534 1372 84a1ef28ab0d13263326e8d7d854aaa0 ""
@@ -49,8 +49,10 @@
   "C:/Users/pablo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1247596667 35752 024fb6c41858982481f6968b5fc26508 ""
   "C:/Users/pablo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1247596667 32722 d7379af29a190c3f453aba36302ff5a9 ""
   "C:/Users/pablo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr17.pfb" 1247596666 32362 bc3f3eec7ab7d65fe700963d4017d32c ""
+  "C:/Users/pablo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb" 1247596667 32734 69e00a6b65cedb993666e42eedb3d48f ""
   "C:/Users/pablo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb" 1247596667 32726 39f0f9e62e84beb801509898a605dbd5 ""
   "C:/Users/pablo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1247596667 32569 5e5ddc8df908dea60932f3c484a54c0d ""
+  "C:/Users/pablo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb" 1247596667 32587 65067f817f408bc71a7312f3d9828a9b ""
   "C:/Users/pablo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb" 1247596667 32626 5abc8bb2f28aa647d4c70f8ea38cc0d3 ""
   "C:/Users/pablo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb" 1247596667 37944 359e864bd06cde3b1cf57bb20757fb06 ""
   "C:/Users/pablo/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti12.pfb" 1247596667 36118 fad905eba93cff5bce1e185fe980a177 ""
@@ -324,13 +326,13 @@
   "C:/Users/pablo/AppData/Local/Programs/MiKTeX/tex/latex/zref/zref-base.sty" 1695383086 20785 f7d1133a287929598a897c93f8f4c44b ""
   "Preamble/Preamble.tex" 1758016749 11367 60276e4726061d3cee4e911b74ebcb9e ""
   "Theory/1 - Medida de Lebesgue.tex" 1761836478 39918 a699c1f87c1e47aa7e2a88d2a6bb729f ""
-  "Theory/2 - Integracion con respecto a una medida.tex" 1761940810 27081 b16a121c197a2a2fa42b5fca83e04158 ""
+  "Theory/2 - Integracion con respecto a una medida.tex" 1762020727 41405 862283f80f8ec103f1ab4c296e1a536c ""
   "Theory/Theory.tex" 1761780323 208 9f576f3803d758c5cd4fa87da5002f9b ""
   "c:/Users/pablo/OneDriveUCM/Universidad/Calculo Integral/apuntes/MedidaEIntegracionLebesgue/main.tex" 1758626622 698 75d8a2270a2dd524302be06461b0eb3e ""
-  "main.aux" 1761940827 23754 99f90445df73bc016c9dce8d6f5fe913 "pdflatex"
-  "main.out" 1761940827 3047 387f6346b22c26e3980afcf0af5747fe "pdflatex"
+  "main.aux" 1762020736 27103 28d969769ea4ea8e760202837ec63567 "pdflatex"
+  "main.out" 1762020736 3420 e30421ed286ae738e03f86ffa608d5a6 "pdflatex"
   "main.tex" 1758626622 698 75d8a2270a2dd524302be06461b0eb3e ""
-  "main.toc" 1761940827 1351 5af1bace9a9a95c12bcb292b1bb4e371 "pdflatex"
+  "main.toc" 1762020736 1476 bcdedb3af8f5782640e94c90baa60171 "pdflatex"
   (generated)
   "main.aux"
   "main.log"

@@ -348,27 +348,222 @@
     $$\|f\|_{\infty} = \inf\{M \geq 0 : |f(x)| \leq M \text{ para casi todo } x \in X\}$$
     y por definición $\inf\{\emptyset\} = \infty$. 
 \end{definición}
+\begin{definición}[Exponentes conjugados]
+Sean $p,q\in[1,\infty]$. Decimos que $p$ y $q$ son exponentes conjugados (o duales) si
+\[
+    \frac{1}{p}+\frac{1}{q}=1.
+\]
+Para $1<p<\infty$ esto determina $q=\frac{p}{p-1}$. Se adoptan las convenciones
+$p=1$ corresponde a $q=\infty$ y $p=\infty$ corresponde a $q=1$.
+\end{definición}
 \begin{proposición}[Desigualdad de Young]
-    Sea $p \in (1, \infty)$, entonecs para $a, b \in \mathbb{R}^+$ se tiene que 
-    $$ab \leq \frac{a^p}{p} + \frac{b^q}{q}$$
+    Sea $p \in (1, \infty)$, entonces para $a, b \in \mathbb{R}^+$ se tiene que
+    $$ab \leq \frac{a^p}{p} + \frac{b^{p^*}}{p^*}$$
 \end{proposición}
 \begin{proof}
-    
+    Distingamos casos: 
+    \begin{enumerate}
+        \item Si $ab = 0$, la desigualdad es evidente
+        \item Si $a, b > 0$, podemos escribir $a = tb$ con $t > 0$. Para demostrar que la desigualdad se cumple para todo $t$, basta ver que la función 
+        $$f(t) = \frac{(tb)^p}{p} + \frac{b^{p^*}}{p^*} - (tb)b \geq 0 \quad \forall t \in \mathbb{R}^+$$
+        Derivemos la función anterior 2 veces para analizar su crecimiento: 
+        $$f^{\prime}(t) = b(tb)^{-1} - b^2, \quad f^{\prime \prime}(t) = (p - 1)b^2 (tb)^{p - 2} > 0$$
+        Luego $f$ es estrictamente convexa. Aemás $f^{\prime}$ sólo se anula en $t_0 = b^{\frac{2 - p}{p - 1}}$, donde alcanza un mínimo relativo con $f(t_0) = 0$, luego $f(t) \geq 0$ para todo $t \in \mathbb{R}^+$.
+    \end{enumerate}
 \end{proof}
 \begin{proposición}[Desigualdad de Hölder]
     Sean $p \in [1, \infty]$, $(X, \mu$)-espacio de medida y $f, g: X \to \mathbb{F}$ medibles. Entonces
     $$\|f g\|_1 \leq \|f\|_p \|g\|_q$$
 \end{proposición}
 \begin{proof}
-    
+    Distingamos casos:
+    \begin{enumerate}
+        \item Si $f \cdot g$ = 0, la desigualdad es evidente.
+        \item Si $f \cdot g \neq 0$, aplicamos la desigualdad de Young a $a = |f(x)|/\|f\|_p$ y $b = |g(x)|/\|g\|_{p^*}$ para todo $x \in X$:
+        $$\frac{\|fg\|_1}{\|f\|_p \|g\|_{p^*}} = \int \frac{|f|}{\|f\|_p} \frac{|g|}{\|g\|_{p^*}} \, \mathrm{d}\mu \le \int \frac{|f|^p}{p \|f\|_p^p} \, \mathrm{d}\mu + \int \frac{|g|^{p^*}}{p^* \|g\|_{p^*}^{p^*}} \, \mathrm{d}\mu = \frac{1}{p} + \frac{1}{p^*} = 1$$
+        por lo que $\|fg\|_1 \leq \|f\|_p \|g\|_{p^*}$.
+    \end{enumerate}
 \end{proof}
 \begin{proposición}[Desigualdad de Minkowski]
     Sea $p \in [1, \infty]$, $(X, \mu)$-espacio de medida y $f, g \in \mathcal{L}^p(X, \mathbb{F})$. Entonces 
     $$\|f + g\|_p \leq \|f\|_p + \|g\|_p$$    
 \end{proposición}
+\begin{proof}
+    Distingamos casos: 
+    \begin{enumerate}
+        \item Si $\|p\|_p$ o $\|g\|_p = \infty$ el resulatdo es evidente
+        \item Supongamos que $\|f\|_p, \|g\|_p < \infty$.
+        Podemos ver que $\|f + g\|_p < \infty$, ya que 
+        $$|f + g|^p \leq 2^{p-1}(|f|^p + |g|^p)$$
+        Para demostrar este hecho, usamos que la función $h(x) = |x|^p$ es convexa sobre $\mathbb{R}^+$ (para $p > 1$) y por la definición de convexidad:
+        $$\left|\frac{1}{2}f + \frac{1}{2}g\right|^p \leq \left|\frac{1}{2}|f| + \frac{1}{2}|g|\right|^p \leq \frac{1}{2}|f|^p + \frac{1}{2}|g|^p$$
+        Esto implica que 
+        $$|f + g|^p \leq 2^{p-1}|f|^p + 2^{p-1}|g|^p$$
+        Por lo tanto, sabemos que $\|f + g\|_p < \infty$. Distingamos casos:
+        \begin{enumerate}
+            \item Si $\|f + g\|_p = 0$ el resultado es evidente. 
+            \item Si $\|f + g\|_p \neq 0$, usando la desigualdad triangular y luego la desigualdad de Hölder, tenemos que 
+\begin{align*}
+\|f + g\|_p^p &= \int |f + g|^p \, \mathrm{d}\mu = \int |f + g| \cdot |f + g|^{p-1} \, \mathrm{d}\mu \\
+&\le \int (|f| + |g|) |f + g|^{p-1} \, \mathrm{d}\mu \\
+&= \int |f|\, |f + g|^{p-1} \, \mathrm{d}\mu + \int |g|\, |f + g|^{p-1} \, \mathrm{d}\mu \\
+&\le \left( \int |f|^p \, \mathrm{d}\mu \right)^{\frac{1}{p}} \left( \int |f + g|^{p} \, \mathrm{d}\mu \right)^{1-\frac{1}{p}}
++ \left( \int |g|^p \, \mathrm{d}\mu \right)^{\frac{1}{p}} \left( \int |f + g|^{p} \, \mathrm{d}\mu \right)^{1-\frac{1}{p}} \\
+&= (\|f\|_p + \|g\|_p) \|f + g\|_p^{p-1}.
+\end{align*}
+            Dividiendo por $\|f + g\|_p^{p-1}$ obtenemos la desigualdad deseada:
+            $$\|f + g\|_p \leq \|f\|_p + \|g\|_p$$
+        \end{enumerate}
+    \end{enumerate}
+\end{proof}
 \begin{definición}[Espacio de Banach]
     Un espacio normado $(V, \|\cdot\|)$ se dice un espacio de Banach si es completo, es decir, si toda sucesión de Cauchy en $V$ converge a un elemento de $V$.
 \end{definición}
 \ejemplo{
     El espacio $\mathcal{B}(X, \mathbb{F})$ de funciones limitadas $f: X \to \mathbb{F}$ se dice que es un espacio de Banach con la norma $\|f\|_{\infty} = \sup_{x \in X} |f(x)|$.
 }
+\begin{proposición}
+    $L^p(X, \mathbb{F})$ es un espacio de Banach para todo $p \in [1, \infty]$. Además, si $(f_n)_{n \in \mathbb{N}} \to f$ en $L^p(X, \mathbb{F})$, entonces existe una subsucesión $(f_{n_k})_{k \in \mathbb{N}}$ tal que $f_{n_k}(x) \to f(x)$ para casi todo $x \in X$.
+\end{proposición}
+\begin{proof}
+    QUEDA PONERLA
+\end{proof}
+\begin{definición}[Espacio de sucesiones de potencia p-ésima sumables]
+    Sea $p \in [1, \infty)$. Definimos $\ell^p = \{(x_n)_{n \in \mathbb{N}} : \|(x_n)_{n \in \mathbb{N}}\| \leq \infty\}$ donde 
+    $$\|(x_n)_{n \in \mathbb{N}}\|_p = \left(\sum_{n = 1}^{\infty} |x_n|^p\right)^{1/p} \in \mathbb{R}^+$$
+\end{definición}
+\begin{observación}
+    Observese que si $X = \mathbb{N}$, y $\mu$ es una medida de Cantor, es decir $\Sigma = 2^\mathbb{N}$ y $\mu(A) = \#(A \cap \mathbb{N})$ donde $\#$ denota el cardinal del conjunto si $A$ es finito y $\mu(A) = \infty$, en caso contrario, tenemos que $L^p(\mathbb{N}, \mu, \mathbb{F}) = \ell^p$.
+\end{observación}
+\begin{definición}[Continuidad absoluta]
+    Sea $I$ un intervalo $(M, d)$ un espacio métrico, $f: I \to M$ se dice absolutamente continua si para todo $\varepsilon \in \mathbb{R}^+$ existe $\delta \in \mathbb{R}^+$ tal que para cualquier familia finita de intervalos abiertos contenidos en $I$, $\{(x_k, y_k)\}_{k = 1}^{n}$ que cumpla que $\sum_{k = 1}^{n} (y_k - x_k) z \delta$ se tiene que
+    $$\sum_{k = 1}^{n} d(f(y_k), f(x_k)) < \varepsilon$$
+    denotamos $\mathcal{AC}(I, M)$ al conjunto de las funciones absolutamente continua de $I$ en $M$. 
+\end{definición}
+\begin{observación}
+    En caso de funciones del tipo $f = (f_1, \ldots, f_n): I \to \mathbb{R}^n$, $f$ es absolutamente continua si y sólo si $f_k$ es absolutamente continua para todo $k = 1, \ldots, n$
+\end{observación}
+\begin{definición}[Derivada débil]
+    Sean $A \subset \mathbb{R}$ medible, $f, g: A \subset \mathbb{R} \to \mathbb{R}$ medibles. Decimos que $g$ es una derivada débil de $F$ si $g$ es Lebesgue-integrable y existen $c, x_0 \in \mathbb{R}$ tales que
+    $$f(x) = c + \int_{A \cup [x_0, x)} g(y) dy$$
+\end{definición}\
+\begin{teorema}[Teorema Fundamental del Cálculo para la Integral de Lebesgue]
+    Sea $f \in L^{1}([a, b], \mathbb{R})$. Entonces la función $F [a, b] to \mathbb{R}$ dada por 
+    $$F(x) = c + \int_{a}^{x} f(y) dy$$
+    donde $c \in \mathbb{R}$ es una constante cualquiera y derivable en casi todo punto $F^{\prime} = f$ en casi todo punto. Además, $F \in \mathcal{AC}([a, b], \mathbb{R})$ y toda función $F \in \mathcal{AC}([a, b], \mathbb{R})$ y de esta forma, en particular
+    $$F(b) - F(a) = int_a^b dy \text{ (Regla de Barrow)}$$
+\end{teorema}
+\subsection{La relación entre las integrales de Riemann y de Lebesgue}
+\begin{definición}[Integral de Riemann]
+    Sea $f:[a,b]\to\mathbb{R}$ una función acotada. Una \emph{partición} de $[a,b]$ es un conjunto finito
+    \[P=\{a=x_0<x_1<\dots<x_n=b\}.
+    \]
+    Para cada subintervalo $[x_{i-1},x_i]$ definimos
+    \[M_i=\sup_{x\in[x_{i-1},x_i]} f(x),\qquad m_i=\inf_{x\in[x_{i-1},x_i]} f(x).
+    \]
+    La suma superior y la suma inferior de Riemann asociadas a la partición $P$ son
+    \[U(f,P)=\sum_{i=1}^n M_i\,(x_i-x_{i-1}),\qquad L(f,P)=\sum_{i=1}^n m_i\,(x_i-x_{i-1}).
+    \]
+    La \emph{integral superior} (resp. \emph{integral inferior}) de $f$ en $[a,b]$ se definen por
+    \[\overline{\int_a^b} f = \inf_P U(f,P),\qquad \underline{\int_a^b} f = \sup_P L(f,P),
+    \]
+    donde los ínfimos y supremos se toman sobre todas las particiones finitas $P$ de $[a,b]$. Decimos que $f$ es \emph{Riemann-integrable} en $[a,b]$ si
+    \[\overline{\int_a^b} f = \underline{\int_a^b} f.
+    \]
+    En tal caso su valor común se llama integral de Riemann de $f$ en $[a,b]$ y se denota
+    \[\int_a^b f(x)\,dx = \overline{\int_a^b} f = \underline{\int_a^b} f.
+    \]
+
+    Alternativamente, $f$ es Riemann-integrable con integral $I$ si y sólo si para todo $\varepsilon>0$ existe $\delta>0$ tal que para toda partición $P$ con norma $\|P\|:=\max_i (x_i-x_{i-1})<\delta$ y para cualquier elección de puntos marcados $t_i\in[x_{i-1},x_i]$ se cumple
+    \[
+        \left|\sum_{i=1}^n f(t_i)\,(x_i-x_{i-1}) - I\right| < \varepsilon.
+    \]
+\end{definición}
+\begin{teorema}
+    Sea una función limitada $f: [a, b] \subset \mathbb{R} \to \mathbb{R}$ es Riemann integral entonecs es Lebesgue integrable y ambas integables coinciden. 
+\end{teorema}
+\begin{proof}
+Para cada $n \in \mathbb{N}$, dividimos el intervalo $I = [a, b]$ en subintervalos disjuntos
+$$[a, a + 2^{-n}(b - a), \ldots, [b - 2^{-n}(b - a), b]$$
+de longitud $2^{-n}$. Denotamos estos subintervalos por $I_{n,1}, \ldots, I_{n,2^n}$. Sean
+$$m_{n,k} = \inf f(I_{n,k}), \quad M_{n,k} = \sup f(I_{n,k}).$$
+
+Consideramos las funciones escalonadas
+$$f_n(x) = m_{n,k} \text{ si } x \in I_{n,k}, \quad g_n(x) = M_{n,k} \text{ si } x \in I_{n,k}, \quad k = 1, \ldots, 2^n.$$
+
+Es claro que
+$$f_n(x) \leq f(x) \leq g_n(x).$$
+
+Además,
+$$f_n(x) \leq f_{n+1}(x), \quad g_{n+1}(x) \leq g_n(x).$$
+
+Las funciones escalonadas son Riemann integrables y, en particular, $f_n$ satisface
+$$\int_{[a,b]} f_n = 2^{-n} \sum_{k=0}^{2^n} m_{n,k}.$$
+
+Estas funciones $f_n$ son también simples medibles y, por tanto, Lebesgue integrables, con
+$$\int_{[a,b]} f_n = 2^{-n} \sum_{k=0}^{2^n} m_{n,k}$$
+
+(se puede verificar). Así, $\int_{[a,b]} f_n = \int_{[a,b]} f_n$ y lo mismo ocurre con $g_n$. La integrabilidad Riemann de $f$ implica que 
+$$\lim_{n \to \infty} \int_{[a,b]} f_n = \lim_{n \to \infty} \int_{[a,b]} g_n = \int_{[a,b]} f$$
+
+Las funciones límite
+\[\varphi = \lim_{n \to \infty} f_n, \quad \psi = \lim_{n \to \infty} g_n\]
+
+son acotadas y medibles en el sentido de Lebesgue (pues son límite de funciones escalonadas), por lo que son integrables en el sentido de Lebesgue. Es claro que
+para todo $n \in \mathbb{N}$. Por la igualdad \eqref{eq:2.2}, concluimos que
+
+para todo $n \in \mathbb{N}$. Por la igualdad \eqref{2.2}, concluimos que
+$$\int_{[a,b]} \varphi = \int_{[a,b]} \psi = \int_{[a,b]} f,$$
+
+y dado que $\varphi(x) \leq \psi(x)$, tenemos que $\varphi(x) = \psi(x)$ casi en todas partes (se puede verificar). Como $\varphi \leq f \leq \psi$, se sigue que $f = \varphi = \psi$ casi en todas partes, por lo que $f$ es medible y
+$$\int_{[a,b]} f = \int_{[a,b]} \varphi = \int_{[a,b]} \psi = \int_{[a,b]} f.$$
+\end{proof}
+\begin{corolario}
+    Sea $f: [a, b] \to \mathbb{R}$ limitaa y sea $D$ el conjunto de dos puntos de discontinuidad de $f$ en $[a, b]$. Entonces $f$ es Riemann-integrable en $[a, b]$ si y sólo si $D$ es un conjunto de medida nula. 
+\end{corolario}
+\begin{proof}
+Primero veamos que las funciones $\varphi$ y $\psi$ definidas en el apartado anterior a partir de la sucesión de particiones $\{P_n\}_{n\in\mathbb{N}}$ satisfacen que, para $c \in [a, b] \setminus \bigcup_{n\in\mathbb{N}} P_n$, se tiene que $\varphi(c) = \psi(c)$ si y solo si $f$ es continua en $c$.
+
+Supongamos que $f$ es continua en $c$. Entonces, dado $\varepsilon > 0$, existe $\delta > 0$ tal que
+$$|f(x) - f(c)| < \frac{\varepsilon}{2}.$$
+
+Por consiguiente, dados dos elementos $x, y \in B(c, \delta)$, tenemos
+$$|f(x) - f(y)| \leq |f(x) - f(c)| + |f(y) - f(c)| < \varepsilon.$$
+
+En particular,
+$$\sup\{f(x) : x \in B(c, \delta)\} - \inf\{f(x) : x \in B(c, \delta)\} \leq \varepsilon.$$
+
+Consideremos entonces $N \in \mathbb{N}$ tal que $1/N < \delta$, es decir, $n \geq N$. En este caso, para $I_{n,j_n} \subset B(c, \delta)$, se deduce que
+$$M_{n,j_n} - m_{n,j_n} \leq \sup\{f(x) : x \in B(c, \delta)\} - \inf\{f(x) : x \in B(c, \delta)\} \leq \varepsilon,$$
+
+por lo que $|\varphi(c) - \psi(c)| \leq \varepsilon$, y como $\varepsilon \in \mathbb{R}^+$ es arbitrario, concluimos que $\varphi(c) = \psi(c)$.
+
+Recíprocamente, supongamos que $\varphi(c) = \psi(c)$. Entonces, para $c \in I_{n,j_n}$, $M_{n,j_n} - m_{n,j_n} \to 0$ cuando $n \to \infty$. En este caso, dado $\varepsilon > 0$, existe $N \in \mathbb{N}$ tal que, para todo $n \geq N$,
+$$M_{n,j_n} - m_{n,j_n} < \varepsilon.$$
+
+En particular, dado $\delta > 0$ tal que $B(c, \delta) \subset I_{n,j_N}$, tenemos
+$$|f(x) - f(c)| \leq M_{n,j_N} - m_{n,j_N} < \varepsilon, \quad \text{para todo } x \in B(c, \delta),$$
+
+por lo que $f$ es continua en $c$.
+
+Así, si $f$ es Riemann integrable en $[a, b]$, entonces existe un conjunto $E \subset [a, b] \setminus \bigcup_{n\in\mathbb{N}} P_n$ con $\lambda_1(E) = 0$ tal que
+$$\varphi(x) = \psi(x) \quad \text{para todo } x \in \left([a, b] \setminus \bigcup_{n\in\mathbb{N}} P_n\right) \setminus E.$$
+
+Denotamos
+$$\widetilde{E} = E \cup \left(\bigcup_{n\in\mathbb{N}} P_n\right).$$
+
+Como el conjunto $\bigcup_{n\in\mathbb{N}} P_n$ es numerable, tenemos que $\lambda_1(\widetilde{E}) = 0$. Por lo tanto, $f$ es continua en los puntos de $[a, b] \setminus \widetilde{E}$, es decir, $f$ es continua salvo en un conjunto de medida nula.
+
+Recíprocamente, si $f$ es continua salvo en un conjunto de medida nula, entonces $\varphi(x) = \psi(x)$ para casi todo punto del intervalo $[a, b]$, de donde se deduce que las integrales superior e inferior coinciden, siendo entonces $f$ Riemann integrable en el intervalo $[a, b]$.
+\end{proof}
+\begin{teorema}
+    Sea $I \subset \mathbb{R}$ un intervalo y $f: I \to \mathbb{R}$ tal que $f$ y $|f|$ son integrables en el sentido impropio de Riemann (i.e. en intervalos de integracion infinitos, con discontinuidades infinitas, no acotadas, etc). Entonces $f$ es integrable en el sentio de Lebesgue en $I$ y
+    $$\int_R f = \int_L f$$
+\end{teorema}
+\begin{proof}
+    Consideremos el caso en el que el intervalo es $I = (a, b]$ y limitado, y $f$ es integrable en el sentido propio de Riemann en caa intervalo $[a + \varepsilon, b]$ con $\varepsilon > 0$. O el caso en el que $a = -\infty$ es similar. \\
+    El caso general se reduce a un número finito de los dos casos anteriores. Sea $f_n = f$ en $[a + n^{-1}, b]$ y $f_n = 0$ en $(a, a + n^{-1})$. Por la integrabilidad de Riemann la función $f$ es Lebesgue-medible en el intervalo $[a + n^{-1}, b]$ y en consecuencia $f_n$ es medible. Es claro que $f_n \to f$ puntualmente, por lo que $f$ es medible en $(a, b]$. \\
+    Por la integrabilidad impropia de $|f|$ las funciones $|f_n| \leq |f|$ tienen integrales de Lebesgue uniformemente limitadas (iguales a sus correspondientes integrales de Riemann por el teorema anterior). Por el Lema de Fatou, la función $|f|$ es integrable-Lesbesgue.  Por el teorema de la convergencia dominada, las integrales de Lebesgue de las funciones $f_n$ sobre $(a,b]$  convergen a la integral de Lebesgue de $f$. \\
+    En consecuencia, la integral de Lebesgue de $f$ coincide con la integral impropia de Riemann. 
+\end{proof}
+\subsection{Teoremas de Tonelli, Fubini y cambio de Variable}
