@@ -567,3 +567,39 @@ Recíprocamente, si $f$ es continua salvo en un conjunto de medida nula, entonce
     En consecuencia, la integral de Lebesgue de $f$ coincide con la integral impropia de Riemann. 
 \end{proof}
 \subsection{Teoremas de Tonelli, Fubini y cambio de Variable}
+\begin{definición}[Espacio de medida producto]
+    Sean ($X$, $\mathcal{A}$, $\mu$) y ($Y$, $\mathcal{B}$, $\nu$) dos espacios de medida. Definimos el espacio de medida producto ($X \times Y$, $\mathcal{A} \otimes \mathcal{B}$, $\mu \times \nu$) como sigue:
+    \begin{itemize}
+        \item $X \times Y = \{(x, y) : x \in X, y \in Y\}$
+        \item $\mathcal{A} \otimes \mathcal{B}$ es la $\sigma$-álgebra generada por los conjuntos del tipo $A \times B$ con $A \in \mathcal{A}$ y $B \in \mathcal{B}$
+        \item La medida producto $\mu \times \nu: \mathcal{A} \otimes \mathcal{B} \to [0, \infty]$ está definida por 
+        $$\mu \times \nu(A \times B) = \mu(A) \cdot \nu(B)$$
+        para todo $A \in \mathcal{A}$ y $B \in \mathcal{B}$.
+    \end{itemize}
+\end{definición}
+\begin{teorema}[Teoremas de Tonelli y Fubini]
+    Sean $(X, \mathcal{S}, \mu)$ y $(Y, \mathcal{F}, \nu)$, dos espacios de medida $\sigma$-finitos, y sea $f$ una función $(\mathcal{S} \otimes \mathcal{F})$-medible sobre $X \times Y$
+    \begin{enumerate}
+        \item (Teorema de Tonelli) Si $0 \leq f \leq \infty$, definimos $f_x(y) = f(x, y)$ y $f^y(x) = f(x, y)$ y 
+        $$\varphi(x) = \int_{Y} f_x dv, \quad \overline{\varphi}(x) = \int_{X} d^y d\mu, \quad x \in X, y \in Y$$
+        entonces $\varphi $ es $\mathcal{S}$-medible, $\overline{\varphi}$ es $\mathcal{F}$-medible y
+        $$\int_X \varphi d\mu = \int_{X \times Y} f d(\mu \times \nu) = \int_Y \overline{\varphi} d\nu$$
+        O dicho de otra forma 
+        $$\int_X \int_Y f(x, y) d\nu(y) d\mu(x) = \int_{X \times Y} f(x, y) d(\mu \times \nu)(x, y) = \int_Y \int_X f(x, y) d\mu(x) d\nu(y)$$
+        \item Si $f$ es una función compleja, entonces
+        $$\varphi^*(x) = \int_Y |f_x| d\nu \text{ satisface que } \int_X \varphi^* d\mu < \infty$$
+        entonces $f \in L^1(\mu \times \nu)$
+        \item (Teorema de Fubini) Si $f \in L^1(\mu \times \nu)$ entonces $f_x \in L^1(\nu)$ para casi todo $x \in X$ y $f^y \in L^1(\mu)$ para casi todo $y \in Y$. Además, $\varphi \in L^1(\mu)$ y $\overline{\varphi} \in L^1(\nu)$ y 
+        $$\int_X \varphi d\mu = \int_{X \times Y } f d(\mu \times \nu) = \int_Y \overline{\varphi} d\nu$$
+        O escrito de otra manera
+        $$\int_X \int_Y f(x, y) d\nu(y) d\mu(x) = \int_{X \times Y} f(x, y) d(\mu \times \nu)(x, y) = \int_Y \int_X f(x, y) d\mu(x) d\nu(y)$$
+    \end{enumerate}
+\end{teorema}
+\begin{observación}
+    $$\mathcal{L}_n \times \mathcal{L}_m \subset \mathcal{L}_{n + m}$$
+    A pesar de esto, se cumple que $\lambda_n \times \lambda_m = \lambda_{n + m}|_{\mathcal{L}_n \times \mathcal{L}_m}$
+\end{observación}
+\begin{teorema}[Teorema de Cambio de Variable]
+    Sea $U \subset \mathbb{R}^n$-abierto, $h \in \mathcal{C}^1(U, \mathbb{R}^n)$ inyectiva, $f \in L^1(\mathbb{R}^n, \mathbb{F})$. Entonces para todo $A \subset U$ Lebesgue-medible, tenemos queda
+    $$\int_A f(h(x)) |\det(h'(x)) dx = \int_{h(A)} f(y) dy$$
+\end{teorema}

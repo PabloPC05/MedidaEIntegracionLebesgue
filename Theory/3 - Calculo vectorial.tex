@@ -1,0 +1,47 @@
+\section{Calculo vectorial en $\mathbb{R}^n$}
+\begin{observación}[Recuerdo de algunas definiciones]
+    \vspace{-1cm}
+    \begin{enumerate}
+        \item Norma euclídea en $\mathbb{R}^n$: $\|x\| = \left( \sum_{i=1}^n x_i^2 \right)^{1/2}$ para $x = (x_1, x_2, \ldots, x_n) \in \mathbb{R}^n$.
+        \item Distancia euclídea en $\mathbb{R}^n$: $d(x,y) = \|x - y\|$ para $x, y \in \mathbb{R}^n$.
+        \item Norma infinita en $\mathbb{R}^n$: $\|x\|_\infty = \max\{|x_1|, |x_2|, \ldots, |x_n|\}$ para $x = (x_1, x_2, \ldots, x_n) \in \mathbb{R}^n$.
+        \item Función norma en $\mathbb{R}^n$: Sea $f: \mathbb{R}^n \to \mathbb{R}$ dada por $f(x) = \|x\|$. Entonces, $f$ es continua en $\mathbb{R}^n$.
+        \item Conjunto de funciones continuas: Sea $\mathcal{C}(X, \mathbb{R}^n)$ el conjunto de funciones continuas de un espacio topológico $X$ en $\mathbb{R}^n$.
+        \item Conjunto de funciones continuas y acotadas: Sea $\mathcal{BC}(X, \mathbb{R}^n)$ el conjunto de funciones continuas y acotadas de un espacio topológico $X$ en $\mathbb{R}^n$.
+    \end{enumerate}   
+\end{observación}
+\begin{observación}
+    Si $X$ es compacto, entonces 
+    $\mathcal{BC}(X, \mathbb{R}^n) = \mathcal{C}(X, \mathbb{R}^n)$, ya que toda función continua en un espacio compacto es acotada (Teorema de Weierstrass).
+\end{observación}
+\begin{definición}[Hiperplano]
+    Un hiperplano de $\mathbb{R}^n$ es un conjunto de la forma
+    $$H = \{ x \in \mathbb{R}^n : \langle x, a \rangle = b \}$$
+    donde $a \in \mathbb{R}^n \setminus \{0\}$, $b \in \mathbb{R}$ y $\langle x, a \rangle = \sum_{i=1}^n x_i a_i$ es el producto escalar en $\mathbb{R}^n$.
+\end{definición}
+\begin{definición}[Hipersuperficie]
+    Una hipersuperficie de $\mathbb{R}^n$ es un subconjunto $S \subset \mathbb{R}^n$ tal que para cada punto $p \in S$ existe un entorno abierto $U$ de $p$ en $\mathbb{R}^n$ y una función continua $\varphi: U \to \mathbb{R}$ de clase $\mathcal{C}^1$ en $U$ con gradiente $\nabla \varphi (x) \neq 0$ para todo $x \in U$, tal que
+    $$S \cap U = \{ x \in U : \varphi(x) = 0 \}.$$
+\end{definición}
+\begin{definición}[Parametrización]
+    Una parametrización de un conjunto $S \subset \mathbb{R}^n$ es una función continua $\xi: X \subset \mathbb{R}^m \to \mathbb{R}^n$ tal que $\xi(X) = S$. Si $X \subset X^{\prime}$ y $\xi \in \mathcal{C}^1(X, \mathbb{R}^n)$ decimos que la parametrización es de clase $\mathcal{C}^1$. Si $\xi$ es inyectiva, decimos que la parametrización es un homeomorfismo entre $X$ y $S$.
+\end{definición}
+\begin{definición}[Hipersuperficie parametrizada]
+    Una hipersuperficie parametrizada de $\mathbb{R}^n$ es un par $(\xi, S)$ donde la parametrización $\xi: X \subset \mathbb{R}^{n-1} \to \mathbb{R}^n$ es una función continua, con dominio $X \subset \mathbb{R}^{n-1}$ tal que $X$ es conexo (esto garantiza que la hipersuperfice no sea fragmentada) y tal que $S = \xi(X)$. \\
+    Diremos que la hipersuperficie es de clase $\mathcal{C}^1$ si la parametrización $\xi$ es de clase $\mathcal{C}^1$.
+ \end{definición}
+\begin{definición}[Hipersuperficie (parametrizada) de clase $\mathcal{C}^1$]
+    Una hipersuperficie parametrizada $(S, \xi) $ se dice de clase $\mathcal{C}^1$ si existe un conjunto abierto $X' \subset \mathbb{R}^{n-1}$ tal que $X \subset X^{\prime}$ y $\xi$ se puede extender a una función de clase $\mathcal{C}^1$ en todo $X^{\prime}$.
+\end{definición}
+\begin{definición}[Hipersuperficie simple]
+    Una hipersuperficie simple es una hipersuperficie parametrizada $(\xi, S)$ en la que si $\xi$ es inyectiva en $X^{\circ}$. 
+\end{definición}
+\begin{definición}[Vector normal]
+    Dada una hipersuperficie parametrizada $(\xi, S)$ de clase $\mathcal{C}^1$, el vector normal en un punto $p = \xi(u) \in S$ es el vector
+    $$N_{\xi} = \frac{\partial \xi}{\partial e_1}(u) \times \frac{\partial \xi}{\partial e_2}(u) \times \cdots \times \frac{\partial \xi}{\partial e_{n-1}}(u),$$
+    Tomando que $\xi^{\prime} \in \mathcal{M}_{n \times (n-1)}(\mathbb{R})$ es la matriz jacobiana de $\xi$ de tamaño $n \times n-1$ y que $\xi^{\prime}_{[k]} \in \mathcal{M}_{n-1}(\mathbb{R})$ es la matriz jacobiana quitandole la fila $k$-ésima (i.e. es de tamaño $(n-1) \times (n-1)$), entonces el vector normal se puede expresar como
+    $$N_{\xi} = \sum_{k = 1}^{n} (-1)^{k+1} \det(\xi^{\prime}_{[k]}) e_k,$$
+    donde $\{e_1, e_2, \ldots, e_n\}$ es la base canónica de $\mathbb{R}^n$. \\
+    Denotaremos al vector normal unitario por $\hat{N_{\xi}} = \frac{N_{\xi}}{\|N_{\xi}\|}$.
+\end{definición}
+\subsection{Concepto de orientación}
