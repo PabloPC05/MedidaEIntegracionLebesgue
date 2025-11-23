@@ -420,18 +420,24 @@
 TODO
 \subsection{Los Teoremas de Green, Gauss y Stokes}
 \begin{proposición}
-    Sea $\gamma \in \mathcal{C}([0,1], \mathbb{R})$ una curva de Jordan. Entonces la región compacta $A$ limpitada por $\gamma$ se puede dividir en un conjunto finito de regiones de la forma 
+    Sea $\gamma \in \mathcal{C}([0,1], \mathbb{R})$ una curva de Jordan. Entonces la región compacta $A$ limitada por $\gamma$ se puede dividir en un conjunto finito de regiones de la forma
     $$\{(x,y) : a \leq x \leq b , c\leq y \leq h(x)\}, \quad \text{o} \quad \{(x,y) : a \leq y \leq b, c \leq x \leq h(y)\}$$
-    donde $h \in \mathcal{C}([a,b], \mathbb{R})$ y la intersección de dos de estas regiones distintas cualesquiera es vacía o con una arista en común. 
+    donde $h \in \mathcal{C}([a,b], \mathbb{R})$ y la intersección de dos de estas regiones distintas cualesquiera es vacía o con una arista en común.
+
 \end{proposición}
 \begin{proof}
-    Sea $\gamma = (\gamma_1, \gamma_2)$ y supongamos qsin pérdida de generalidad que $\gamma^{\prime}(t) \neq 0$ para todo $t \in [0,1]$. Así, dado $t \in [0,1]$ tenemos que $\gamma_1(t) \neq 0 $ o $\gamma_2(t) \neq 0$: 
+    Sea $\gamma(t) = (\gamma_1(t), \gamma_2(t))$ y supongamos sin pérdida de generalidad que $\gamma^{\prime}(t) \neq 0$ para todo $t \in [0,1]$. Así, dado $t_0 \in [0,1]$ tenemos que $\gamma_1'(t_0) \neq 0$ o $\gamma_2'(t_0) \neq 0$:
     \begin{enumerate}
-        \item $\gamma_1(t) \neq 0$: Entonces, por el teorema de la función inversa, existe un entorno $U$ de $t$ tal que $\gamma_1$ es invertible en $U$, y además, la gráfica e $\gamma$ vendrá dada por una función de clase $\mathcal{C}^1$ de la forma $f(x) = (x, \gamma_2(\gamma_1^{-1}(x)))$, con lo cual existe un entorno de $\gamma(t)$ delimitado por rectas paralelas a los ejes coordenados tal que la intersección de $A$ con dicho entorno es de la primera forma. 
-        \item $\gamma_2(t) \neq 0$: Existe un entorno de $\gamma(t)$ delimitado por rectas paralelas a los ejes coordenados tal que la intersección de $A$ con el cuadrado es de la segunda forma.
-    \end{enumerate} 
-    Sea $t \in A^{\circ}$, tomamos un entorno delimitado por rectas paralelas a los ejes coordenados centrada en $A^{\circ}$. Sea $U$ el recubrimiento formado por los entorno construidas en $A^{\circ}$ y en $\partial A$. \\
-    Como $A$ es compacto, existe un subrecubrimiento finito formado por dichos entornos. El conjunto de regiones delimitadas por las rectas que delimitan los entornos, intersecadas con $A$ forman un recubrimiento de $A$ en las condiciones buscadas. 
+        \item $\gamma_1'(t_0) \neq 0$: Por el teorema de la función inversa, existe un entorno $U$ de $t_0$ tal que $\gamma_1: U \to \gamma_1(U)$ es invertible. En el intervalo $[a,b] := \gamma_1(U)$, podemos escribir la curva $\gamma$ como una función de clase $\mathcal{C}^1$ dada por $f(x) = (x, \gamma_2(\gamma_1^{-1}(x)))$. Por lo tanto, existe un rectángulo $[a,b] \times [c,d]$ alrededor de $\gamma(t_0)$ tal que la intersección $A \cap ([a,b] \times [c,d])$ es de la forma
+        $$\{(x,y) : a \leq x \leq b, c \leq y \leq h(x)\}$$
+        donde $h(x) = \gamma_2(\gamma_1^{-1}(x))$.
+
+        \item $\gamma_2'(t_0) \neq 0$: Por el teorema de la función inversa, existe un entorno $V$ de $t_0$ tal que $\gamma_2: V \to \gamma_2(V)$ es invertible. De manera análoga, existe un rectángulo $[a,b] \times [c,d]$ alrededor de $\gamma(t_0)$ tal que la intersección $A \cap ([a,b] \times [c,d])$ es de la forma
+        $$\{(x,y) : a \leq y \leq b, c \leq x \leq h(y)\}$$
+        donde $h(y) = \gamma_1(\gamma_2^{-1}(y))$.
+    \end{enumerate}
+
+    Para cada punto $t \in [0,1]$ en el parámetro de la curva, hemos construido un entorno rectangular alrededor de $\gamma(t)$. Como $A$ es compacto, estos entornos forman un recubrimiento abierto de $A$ a partir del cual existe un subrecubrimiento finito. Las rectas que delimitan estos rectángulos dividen $A$ en un número finito de regiones, cada una de las cuales tiene una de las dos formas descritas anteriormente.
 \end{proof}
 \begin{teorema}[Teorema de Green]
     Sea $\gamma \in \mathcal{AC}([0,1], \mathbb{R}^2)$ una curva que delimita una región $D$ orientada positivamente. Si $F = (F_1, F_2) \in \mathcal{C}^1(D, \mathbb{R}^2)$ entonces
@@ -445,16 +451,50 @@ TODO
 
         Denotaremos por $\gamma$ la frontera de $D$ orientada positivamente (en sentido contrario a las agujas del reloj), que se descompone en cuatro aristas:
         \begin{itemize}
-            \item $\gamma_1$: de $(a,b)$ a $(c,b)$ (arista inferior)
-            \item $\gamma_2$: de $(c,b)$ a $(c,d)$ (arista derecha)
-            \item $\gamma_3$: de $(c,d)$ a $(a,d)$ (arista superior)
-            \item $\gamma_4$: de $(a,d)$ a $(a,b)$ (arista izquierda)
+            \item $\gamma_1: (a,b) \to (c,b)$ (arista inferior)
+            \item $\gamma_2: (c,b) \to (c,d)$ (arista derecha)
+            \item $\gamma_3: (c,d) \to (a,d)$ (arista superior)
+            \item $\gamma_4: (a,d) \to (a,b)$ (arista izquierda)
         \end{itemize}
+
+        \begin{center}
+        \begin{tikzpicture}[scale=1.8]
+            % Ejes
+            \draw[->] (-0.5, 0) -- (3.5, 0) node[right] {$x$};
+            \draw[->] (0, -0.5) -- (0, 3.5) node[above] {$y$};
+
+            % Rectángulo D
+            \draw[thick, color=black] (0.8, 0.8) -- (2.8, 0.8) -- (2.8, 2.8) -- (0.8, 2.8) -- cycle;
+
+            % Vértices
+            \fill (0.8, 0.8) circle (2pt) node[below left] {$(a,b)$};
+            \fill (2.8, 0.8) circle (2pt) node[below right] {$(c,b)$};
+            \fill (2.8, 2.8) circle (2pt) node[above right] {$(c,d)$};
+            \fill (0.8, 2.8) circle (2pt) node[above left] {$(a,d)$};
+
+            % Región D
+            \fill[opacity=0.2, color=blue] (0.8, 0.8) -- (2.8, 0.8) -- (2.8, 2.8) -- (0.8, 2.8) -- cycle;
+            \node at (1.8, 1.8) {$D$};
+
+            % Aristas con flechas y etiquetas
+            \draw[thick, ->, color=blue] (0.9, 0.8) -- (2.7, 0.8);
+            \node at (1.8, 0.5) {$\gamma_1$};
+
+            \draw[thick, ->, color=blue] (2.8, 0.9) -- (2.8, 2.7);
+            \node at (3.1, 1.8) {$\gamma_2$};
+
+            \draw[thick, ->, color=blue] (2.7, 2.8) -- (0.9, 2.8);
+            \node at (1.8, 3.1) {$\gamma_3$};
+
+            \draw[thick, ->, color=blue] (0.8, 2.7) -- (0.8, 0.9);
+            \node at (0.4, 1.8) {$\gamma_4$};
+        \end{tikzpicture}
+        \end{center}
 
         \textbf{Contribución de las aristas horizontales:}
 
         Para $\gamma_1$, parametrizamos como $\alpha_1(t) = (t, b)$ con $t \in [a,c]$, por lo que $d\alpha_1 = (dt, 0)$. Así:
-        $$\int_{\gamma_1} F \cdot d\gamma = \int_a^c F_1(t, b) dt$$
+        $$\oint_{\gamma_1} F = \int_a^c \langle (F_1(t,b), F_2(t,b)), (1, 0) \rangle dt = \int_a^c F_1(t, b) dt$$
 
         Para $\gamma_3$, parametrizamos como $\alpha_3(t) = (t, d)$ con $t \in [c,a]$ (orientación negativa), de modo que:
         $$\int_{\gamma_3} F \cdot d\gamma = \int_c^a F_1(t, d) dt = -\int_a^c F_1(t, d) dt$$
