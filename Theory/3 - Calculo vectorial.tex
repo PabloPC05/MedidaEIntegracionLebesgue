@@ -525,12 +525,45 @@ TODO
         Entonces $\varphi$ es biyectiva y diferenciable. Además, si $\alpha: [c,d] \to \mathbb{R}^2$ es una parametrización  de la frontera $\sigma$ del rectángulo $S$ orientada positivamente, entonces $\beta = \varphi \circ \alpha$ es una parametrización de $\gamma$ orientada positivamente. Así,
         $$\oint_{\gamma} F = \int_c^d \langle F(\beta(t)), \beta^{\prime}(t) \rangle dt = \int_c^d \langle F(\varphi(\alpha(t))), \varphi^{\prime}(\alpha(t)) \alpha^{\prime}(t) \rangle dt$$
         Por la transformación lineal $\varphi^{\prime}(x,y)$ tiene como matriz jacobiana
-        $$\begin{pmatrix}
+        $$\varphi^{\prime}(x, y) = \begin{pmatrix}
             1 & 0 \\
             yh^{\prime}(x) & h(x)
         \end{pmatrix}$$
-        En particular $\varphi^{\prime}(x,y)$ es invertible por lo que $\varphi^{-1}$ es diferenciable. \\A
-        hora defínese $g: \sigma \to \mathbb{R}^2$, $g = (g_1(v), g_2(v))$ por $g(v) = \varphi^{\prime}(x,y)^{T}(F \circ \varphi(v))$. De aquí se deduce que 
-        $$\oint_{\gamma} F = \int_c^d \langle \varphi^{\prime}(\alpha(t))^T(F \circ \varphi(v)), \alpha^{\prime}(t) \rangle dt = \oint_{\sigma} g$$
+        En particular $\varphi^{\prime}(x,y)$ es invertible por lo que $\varphi^{-1}$ es diferenciable. Además, por las propiedades del producto escalar tenemos que 
+        $$\langle F(\varphi(\alpha(t)))\, \varphi^{\prime}(\alpha(t))\alpha^{\prime}(t) \rangle = \langle F(\varphi(\alpha(t))) \varphi^{\prime}(\alpha(t))^T, \alpha^{\prime}(t) \rangle$$
+        
+        Ahora defínese $g: \sigma \to \mathbb{R}^2$, $g = (g_1(x, y), g_2(x, y))$ por $g(x, y) = \varphi^{\prime}(x,y)^{T}(F \circ \varphi(x, y))$. De aquí se deduce que 
+        $$\oint_{\gamma} F = \int_c^d \langle \varphi^{\prime}(\alpha(t))^T(F \circ \varphi(\alpha(t))), \alpha^{\prime}(t) \rangle dt = \int_c^d \langle g(\alpha(t)), \alpha^{\prime}(t) \rangle dt = \oint_{\sigma} g$$
+        A partir de la expresión matricial de $\varphi^{\prime}(x,y)^T$ podemos calcular $g_1$ y $g_2$: 
+        $$g_1(x,y) = F_1(x, yh(x)) + yh^{\prime}(x)F_2(x, yh(x))$$
+        $$g_2(x,y) = h(x)F_2(x, yh(x))$$
+        Por lo tanto, tenemos que 
+        $$\frac{\partial g_1}{\partial y}(x,y) = h(x)\frac{\partial F_1}{\partial x}(x, yh(x)) + h^{\prime}(x) F_2(x, yh(x)) + yh^{\prime}(x)\frac{\partial F_2}{\partial y}(x, yh(x))h(x)$$
+        $$\frac{\partial g_2}{\partial x}(x,y) = h^{\prime}(x)F_2(x, yh(x)) + h(x)\frac{\partial F_2}{\partial x}(x, yh(x)) + yh^{\prime}(x)\frac{\partial F_2}{\partial y}(x, yh(x))h(x)$$
+        Ahora podemos aplicar el Caso 1: 
+        $$\oint_{\sigma} g = \int_S (\frac{\partial g_2}{\partial x} - \frac{\partial g_1}{\partial y}) = \int_S \left(\frac{\partial F_2}{\partial x}(x, yh(x)) - \frac{\partial F_1}{\partial y}(x, yh(x))\right)h(x) = \int_S \left(\frac{\partial(F_2 \circ \varphi)}{\partial x} - \frac{\partial(F_1 \circ \varphi)}{\partial y}\right) |\varphi^{\prime}| =$$ $$ = \int_D \left(\frac{\partial F_2}{\partial x} - \frac{\partial F_1}{\partial y}\right) d\lambda_2$$
+        \item \textbf{Caso 3:} Supongamos ahora que $\gamma$ es una curva cerrada orientada positivamente de clase $\mathcal{C}^1$ dada por $\alpha(t) = (\alpha_1(t), \alpha_2(t))$, $t \in [a,b]$. \\
+        Podemos dividir la región $D$ en un número finito de regiones $D_1, D_2, \ldots, D_n$ en las condiciones de la proposición anterior (es decir, cada $D_i$ es de la forma del Caso 2), por lo que 
+        $$\int_{\sigma_j} F = \int_{D_j} \left(\frac{\partial F_j}{\partial x} - \frac{\partial F_j}{\partial y}\right)$$
+        donde $\sigma_j$ es una curva frontera del conjunto $D_j$. Como cada uno de los segmentos interiores horizontales o verticales aparece como frontera exactamente de las dos regiones, obsérvese que las contribuciones se cancelan: 
+        $$\oint_{\gamma} F = \sum_{j = 1}^{m} \oint_{\sigma_j} F = \sum_{j = 1}^{m} \left(\frac{\partial F_2}{\partial x} - \frac{\partial F_1}{\partial y}\right) = \int_D \left(\frac{F_2}{\partial x} - \frac{\partial F_1}{\partial y}\right) d\lambda_2$$
+        \item \textbf{Caso 4:} Sea $\gamma$ una curva cerrada, simple y rectificable parametrizada por una función absolutamente continua $u: [a, b] \to \mathbb{R}^2$ que encierra la región $D \subset \mathbb{R}^2$. Sea $\epsilon > 0$, por la densidad de $\mathcal{C}^1$ en funciones absolutamente continuas (Teorema de aproximación de Weierstrass), la continuidad de $F$ y la continuidad de la función área $A$, dado un $\delta > 0$ existe una curva $v \in \mathcal{C}^1([a, b], \mathbb{R}^2)$ que encierra la región $E$ tal que: 
+        $$\|F \circ u - F \circ v\| \leq \delta, \quad \int_a^b \|u^{\prime} - v^{\prime}\| dt < \delta, \quad \lambda_2(D \Delta E) < \delta$$
+        Tenemos entonces que 
+        $$\left|\oint_u F - \oint_v F\right| = \left|\int_a^b \langle F(u(t)), u^{\prime}(t) \rangle - \langle F(v(t)), v^{\prime}(t) \rangle dt \right| = $$
+        $$ = \left|\int_a^b \langle F(u(t)), u^{\prime}(t) \rangle - \langle F(v(t)), u^{\prime}(t)^\rangle + \langle F(v(t)), u^{\prime}(t)\rangle  - \langle F(v(t)), v^{\prime} \rangle dt \right| = $$
+        $$ = \left|\int_a^b \rangle F(u(t)) - F(v(t)), u^{\prime}(t) \langle + \rangle F(v(t)), u^{\prime}(t) - v^{\prime}(t) \langle dt \right| = $$
+        $$ \leq \int_a^b \|F(u(t)) - F(v(t))\| \|u^{\prime}(t) + \|F(v(t))\| \|u^{\prime}(t) - v^{\prime}(t)\| dt \leq$$
+        $$ \leq 2\delta L(u) + \|F \circ v \|_{\infty} \delta \leq 2\delta L(u) + (\|F \circ u \|_{\infty} + \delta)\delta < \epsilon$$
+        para $\delta$ lo suficientemente pequeño. \\
+        Por otro lado: 
+        $$\left|\int_D \left(\frac{\partial F_2}{\partial x} - \frac{\partial F_1}{\partial y}\right) - \int_E \left(\frac{\partial F_2}{\partial x} - \frac{\partial F_1}{\partial y}\right)\right| $$ $$\leq \int_{D \Delta E} \left|\frac{\partial F_2}{\partial x} - \frac{\partial F_1}{\partial y}\right| d\lambda_2 \leq \lambda_2(D \Delta E) \left\| \left(\frac{\partial F_2}{\partial x} - \frac{\partial{F_1}}{\partial y} \right) \Big|_{D \Delta E}\right\|_{\infty} \leq \delta \left\|\left(\frac{\partial F_2}{\partial x} - \frac{\partial F_1}{\partial y}\right) \Big|_{D \Delta E}\right\|_{\infty} < \epsilon$$
+        para $\delta$ suficientemente pequeño. Así, 
+        $$- \epsilon + \oint_v F < \int_E \left(\frac{\partial F_2}{\partial x} - \frac{\partial F_1}{\partial y}\right) \leq \int_D \left(\frac{\partial F_2}{\partial x} - \frac{\partial F_1}{\partial y}\right) + \epsilon$$
+        Como $\epsilon$ esta fijado arbitrariamente, tenemos que
+        $$\oint_u F = \int_D \left(\frac{\partial F_2}{\partial x} - \frac{\partial F_1}{\partial y}\right)$$
     \end{enumerate}
 \end{proof}
+\begin{observación}
+    Con el argumento de la densidad podemos reducir la regularidad de $F$ de $\mathcal{C}^1$ a $\mathcal{AC}$.
+\end{observación}
