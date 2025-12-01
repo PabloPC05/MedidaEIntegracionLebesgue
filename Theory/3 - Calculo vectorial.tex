@@ -567,3 +567,89 @@ TODO
 \begin{observación}
     Con el argumento de la densidad podemos reducir la regularidad de $F$ de $\mathcal{C}^1$ a $\mathcal{AC}$.
 \end{observación}
+\subsubsection{Teorema de Stokes}
+TODO
+\subsection{Teorema de la divergencia}
+\begin{teorema}[Teorema de la divergencia]
+    Sea $A \subset \mathbb{R}^n$ abierto, $V \subset A$ compacto y con una frontera $S$ tal que para una parametrización adeucada $\gamma: X \to \mathbb{R}^n$, $\gamma$ es continua, $N_{\gamma}$ está definida y no es nulo en casi todo punto, y $N_{\gamma} \in L^1(U, \mathbb{R}^n)$. Si $F \in \mathcal{AC}(A, \mathbb{R}^n)$ entonces
+    $$\int_V div F = \oint_S F$$   
+\end{teorema}
+\begin{proof}
+    Haremos la demostración para $n = 3$, pero para el caso general, sería de forma análoga.
+    \begin{enumerate}
+        \item \textbf{Parte 1:} Comenzamos estudiando el caso en el que: 
+        \item $$V = \{(x, y, z) \in \mathbb{R}^3 : (x,y) \in [a,b] \times [c,d], 0\leq z \leq f(x, y)\}$$
+        Comenzamos calculando la integral de la izquierda: 
+        $$\int_V div(F) = \int_a^b \int_c^d \int_0^{f(x,y)} \left(\frac{\partial F_1}{\partial x} + \frac{\partial F_2}{\partial y} + \frac{\partial F_3}{\partial z}\right) dz dy dx = $$
+        $$ = \int_c^d \int_a^b \int_0^{f(x,y)} \frac{\partial F_1}{\partial x} dz dy dx + \int_a^b \int_c^d \int_0^{f(x,y)} \frac{\partial F_2}{\partial y} dz dy dx + \int_a^b \int_c^d \int_0^{f(x,y)} \frac{\partial F_3}{\partial z} dz dy dx = I_1 + I_2 + I_3$$
+        Veamos ahora cómo podemos calcular cada uno de los sumandos de la derecha: 
+        \begin{itemize}
+            \item \textbf{Primer sumando:} Dado un elemento $y \in [c,d]$, denotemos por: 
+            $$\Omega_y = \{(x, z) \in \mathbb{R}^2 : x \in [a,b], 0 \leq z \leq f(x,y)\}$$
+            Entonces, la frontera de $\Omega_y$ orientada positivamente dada por 
+            $$\partial \Omega_y = \sigma_y^1 + \sigma_y^2 - \sigma_y^3 - \sigma_y^4$$
+            donde
+            $$\sigma_y^1: t \in [a, b] \to \sigma_y^1(t) = (t, y, 0)$$
+            $$\sigma_y^2: t \in [0, f(b,y)] \to \sigma_y^2(t) = (b, y, t)$$
+            $$\sigma_y^3: t \in [a, b] \to \sigma_y^3(t) = (t, y, f(t,y))$$
+            $$\sigma_y^4: t \in [0, f(a,y)] \to \sigma_y^4(t) = (a, y, t)$$
+            Dado el campo vectorial $G_y(x, z) = (0, F_1(x, y, z))$ por el Teorema de Green tenemos que 
+            $$\int_a^b \int_0^{f(x,y)} \frac{\partial F_1}{\partial x} dz dx = \oint_{\partial \Omega_y} G_y = $$
+            $$ = \int_a^b (0, f_1(t, y, 0)) \cdot (1, 0) dt + \int_0^{f(b, y)} (0, F_1(b, y, t)) \cdot (0,1) dt $$
+            $$ - \int_a^b (0, F_1(t, y, f(t, y))) \cdot  \left(1, \frac{\partial f}{\partial x}(t, y)\right) dt - \int_0^{f(a, y)} (0, F_1(a, y, t)) \cdot (0,1) dt = $$
+            $$ = \int_0^{f(b, y)} F_1(b, y, t) dt - \int_0^{f(a, y)} F_1(a, y, t) dt - \int_a^b F_1(t, y, f(t, y))\frac{\partial f}{\partial x}(t, y) dt$$
+            \item \textbf{Seguno sumando:} Dado un elemento $x \in [a, b]$ denotemos por 
+            $$\Omega_x = \{(y, z) \in \mathbb{R}^2 : y \in [c,d], 0 \leq z \leq f(x, y)\}$$
+            Entones la frontera de $\Omega_x$ está orientada positivamente por 
+            $$\partial \Omega_x
+ = \sigma_x^1 + \sigma_x^2 - \sigma_x^3 - \sigma_x^4$$
+            donde
+            $$\sigma_x^1: t \in [c, d] \to \sigma_x^1(t) = (x, t, 0)$$
+            $$\sigma_x^2: t \in [0, f(x,d)] \to \sigma_x^2(t) = (x, d, t)$$
+            $$\sigma_x^3: t \in [c, d] \to \sigma_x^3(t) = (x, t, f(x,t))$$
+            $$\sigma_x^4: t \in [0, f(x,c)] \to \sigma_x^4(t) = (x, c, t)$$
+            Dado el campo vectorial $G_x(y, z) = (0, F_2(x, y, z))$ por el Teorema de Green tenemos que 
+            $$\int_c^d \int_0^{f(x, y)} \frac{\partial F_2}{\partial y}(x, y, z) dz dy = \oint_{\partial \Omega_x} G_x = $$
+            $$ = \int_0^{f(x, d)} F_d(x, d, t) dt - \int_0^{f(x, c)} F_2(x, c, t) dt - \int_c^d F_2(x, t, f(x, t)) \frac{\partial f}{\partial y}(x, t) dt$$
+            \item \textbf{Tercer sumando: }
+            $$ \int_a^b \int_c^d \int_0^{f(x, y)} \frac{\partial F_3}{\partial z} dz dy dx = \int_a^b \int_c^d [F_3(x, y, f(x, y)) - F_3(x, y, 0)] dy, dx$$
+            Reagrupando los términos:
+            $$\int_V div F = \int_c^d \int_0^{f(b, y)} F_1(b, y, t) dt dy - \int_c^d \int_0^{f(a, y)} F_1(a, y, t) dt dy - $$
+            $$ - \int_c^d \int_a^b F_1(t, y, f(t, y)) \frac{\partial f}{\partial x}(t, y) dt dy + $$
+            $$ + \int_a^b \int_0^{f(x, d)} F_2(x, d, t) dt dx - \int_a^b \int_0^{f(x, c) } F_2(x, c, t) dt dx - $$
+            $$ - \int_a^b \int_c^d F_2(t, y, f(x, t))\frac{\partial f}{\partial y}(x, t) dt dx + $$
+            $$ + \int_a^b \int_c^d F_3(x, y, f(x, y)) dy dx - \int_a^b \int_c^d F_3(x, y, 0) dy dx$$
+            Se reordenan los sumandos: 
+            $$\int_V div F = \int_c^d \int_0^{f(b, y)} F_1(b, y, z) dz dy - \int_c^d \int_0^{f(a, y)} F_1(a, y, z) dz dy + $$
+            $$ + \int_a^b \int_0^{f(x, d)} F_2(x, d, z) dz dx - \int_a^b \int_0^{f(x, c)} F_2(x, c, z) dz dx - $$
+            $$ - \int_a^b \int_c^d F_3(x, y, 0) dy dx - \int_a^b \int_c^d F_1(x, y, f(x, y)) \frac{\partial f}{\partial x}(x, y) dy dx - $$
+            $$ - \int_a^b \int_c^d F_2(x, y, f(x, y)) \frac{\partial f}{\partial y} dy dx + \int_a^b \int_c^d F_3(x, y, f(x, y)) dy dx$$
+            Calculemos ahora la integral de superficie. Denotemos por: 
+            $$\partial \Omega_1 = \{(x, y, 0) : (x, y) \in [a,b] \times [c,d]\}$$
+            $$\partial \Omega_2 = \{(x, y, f(x, y)) : (x, y) \in [a,b] \times [c,d]\}$$
+            $$\partial \Omega_3 = \{(x, c, z) \in \mathbb{R}^3 : x \in [a,b], 0 \leq z \leq f(x, c)\}$$
+            $$\partial \Omega_4 = \{(x, d, z) \in \mathbb{R}^3 : x \in [a, b], 0 \leq z \leq f(x, d)\}$$
+            $$\partial \Omega_5 = \{(a, y, z) \in \mathbb{R}^3 : y  \in [c,d], 0 \leq z \leq f(a, y)\}$$
+            $$\partial \Omega_6 = \{(b, y, z) \in \mathbb{R}^3 : y \in [c, d], 0 \leq z \leq f(b, y)\}$$
+            Asociadas las parametrizaciones anteriores obtenemos los siguientes vectores normales: 
+            $$N_1(x, y) 0 (0, 0, 1)$$
+            $$N_2(x, y) = \left(-\frac{\partial f}{\partial x}, - \frac{\partial f}{\partial y}(x, y), 1\right)$$
+            $$N_3(x, z) = (0, -1, 0)$$
+            $$N_4(x, y) = (0, -1, 0)$$
+            $$N_5(x,y) = (1, 0, 0)$$
+            $$N_6(x, y) = (1, 0, 0)$$
+            En vista de las orientaciones de los vectores normales tenemos que: 
+            \begin{itemize}
+                \item $N_1$ es nomral interior (hay que cambiar el signo)
+                \item $N_2$ es normal exterior (se mantiene el signo)
+                \item $N_3$ es normal exterior (se mantiene el signo)
+                \item $N_4$ es normal interior (hay que cambiar el signo)
+                \item $N_5$ es normal interior (hay que cambiar el signo)
+                \item $N_6$ es normal exterior (se mantiene el signo)
+            \end{itemize}
+            Teniendo en cuenta la orientación de los vectores normales: 
+            $$\oint_{\partial \Omega} F = - \oint_{\partial \Omega_1} F + \oint_{\partial \Omega_2} F + \oint_{\partial \Omega_3} F - \oint_{\partial \Omega_4} F - \oint_{\partial \Omega_5} F + \oint_{\partial \Omega_6} F$$
+            Ahora, 
+        \end{itemize}
+    \end{enumerate}
+\end{proof}
